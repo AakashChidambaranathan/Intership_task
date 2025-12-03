@@ -1,132 +1,112 @@
-#list {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-    margin: 10px 0 0;
-    font-size: clamp(16px, 2.8vw, 25px);
-    padding: 0;
-}
-.box {
-    width: 90%;
-    height: 30%;
-    background-color:white;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 10px;
-}
-.blogs{
-    font-size: 19px;
-}
-
-#teams{
-    display: flex;
-    justify-content: flex-end;
-}
-.buttons{
-    background-color: blue;
-    color: aliceblue;
-}
-.imag{
-    height: 500px;
-    width: 500px;
-    align-items: center;
-}
-.pagename{
-    font-size: 24px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-decoration: none;
-}
-#aboutas{
-    height: 400px;
-    width: 1500px;
-    background-color: cornflowerblue;
-    text-align: center;
-}
-#box2 {
-    width: 700px; 
-    height: 150px;
-    background-color: white;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 10px;
-}
-.logo{
-    display: flex;
-    justify-content: start;
-    height: 100px;
-    width: 200px;
-}
-a{
-    text-decoration: none;
-    font-size: 25px;
-}
-
+html,
 body {
-    padding-top: 140px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: aquamarine;
 }
 
+.content {
+    height: 100%;
+    scrollbar-width: none;
+}
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     background: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
 }
-a {
-    text-decoration: none;
+.logo {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
 }
-#aboutas{
-    height: 100%;
-    width: 100%;
-}
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-}
-
-/* Move menu (ul) to the left side */
 #list {
     display: flex;
-    gap: 20px;
-    margin-left: 20px;
-    /* pushes menu away from logo */
+    justify-content: center;
     list-style: none;
+    gap: 25px;
     padding: 0;
+    margin: 0;
 }
-
 #list li a {
     text-decoration: none;
     color: black;
+    font-size: 22px;
+    
 }
-
+.nav-link i {
+    margin-right: 6px;
+}
+.box {
+    width: 95%;
+    background-color: white;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 10px;
+    margin: 25px ;
+    border-radius: 10px;
+}
+.blogs {
+    font-size: 19px;
+}
+.buttons {
+    background-color: blue;
+    color: white;
+}
 .footer {
     position: fixed;
-    bottom: 0;
-    left: 0;
+    font-size: 18p;
+    top: 93%;
     width: 100%;
     background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
 }
-
-.nav-link i {
-    margin-right: 8px;
-}
-
-.scroll-box {
-    width: 1520px;
-    height: 800px;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    border: 10px solid black;
+th,
+td {
     padding: 10px;
 }
+.scroll-box {
+    height: 77%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.scroll-box2{
+    height: 75%;
+    width: 100%;
+    overflow-y:auto;
+    overflow-x:auto;
+}
+form {
+    font: 1em sans-serif;
+    max-width: 100%;
+}   
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+fieldset {
+    width: 100%;
+    border: 1px solid #333333;
+    box-sizing: border-box;
+}
+input:invalid {
+    box-shadow: 0 0 5px 1px rgb(255, 0, 0);
+}
+input:focus:invalid {
+    box-shadow: none;
+}
 
+input:invalid::after{
+    color: red;
+    font-size: larger;
+}

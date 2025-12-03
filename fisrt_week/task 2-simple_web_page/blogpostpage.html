@@ -4,46 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body style="background-color: aquamarine;">
     <header class="header">
-        <center><a href="./index.html"><img src="./Blogger-Logo.jpg" alt="logo" class="logo"></a></center>
-            <ul id="list" style="background-color:antiquewhite;">
-                <li><a href="./blogpostpage.html">Add you blog</a></li>
-                <li><a href="./about.html">about</a></li>
-                <li><a href="./contact.html">contact</a></li>
-            </ul>
+    
+            <img src="./Blogger-Logo.jpg" alt="logo" class="logo">
+      
+        <ul id="list">
+            <li><a href="./index.html" class="nav-link"><i class="bi bi-house-door-fill"></i>Home</a></li>
+            <li><a href="./about.html" class="nav-link"><i class="bi bi-person-circle"></i>About</a></li>
+            <li><a href="./contact.html" class="nav-link"><i class="bi bi-envelope"></i>Contact</a></li>
+        </ul>
     </header>
-    <center><b><h1>Fill details</h1></b></center>
+    <div class="scroll-box2"><br>
     <center>
-        <form action="">
+    <form action="">
             <table>
                 <tr>
                     <th><label for="authon_name">Enter author Name:</label></th>
-                    <td><input type="text" id="authornaem" class="authorName"></td>
+                    <td><input type="text" id="authornaem" class="input" placeholder="Enter your name" required pattern="[A-Za-z]+"></td>
                 </tr>
                 <tr>
                     <th><label for="Emailidauthon">Enter authon Email_Id:</label></th>
-                    <td><input type="email" name="authonemail" id="authonis"></td>
+                    <td><input type="email" class="input" id="authonis" placeholder="Enter your Email"/> </td>
                 </tr>
                 <tr>
                     <th>
                         <label for="fileupload">Upload Your Blog</label></th>
-                        <td><input type="file" name="" id=""></td>
+                        <td><input type="file" name= "" id=""></td>
                     </th>
                 </tr>
                 <tr>
-                        <th><label for="labelabout">Write overviwe</label></th>
-                        <td><input type="text"></td>
+                    <th><label for="labelabout">Write overviwe</label></th>
+                    <td><input type="text" placeholder="write overviwe" class="input"></td>
+                </tr>
+                <tr>
+                    <th><label for="phone num:">Phone NO:</label></th>
+                    <td><input type="text" placeholder="Eg+91 12345 78890" class="input" required pattern="[0-9]+"></td>
+                </tr>
+                <tr>
+                    <th><label for="titel">Enter blog title</label></th>
+                    <td><input type="text" placeholder="Enter your titel" class="input" required pattern="[A-Za-z]"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="blog cover image">Upload cover Image</label>
+                        </th>
+                        <td>
+                    <input type="file"></td>
+                </tr>
+                <tr>
+                    <th><label for="blog_image">Upload Blog Image</label></th>
+                    <td><input type="file"></td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="the_fix_th">copyrigth</label>
+                    </th>
+                    <td>
+                        <input type="text" name="" id="" placeholder="Enter you refer author">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="authonFather">Enter Father Name</label></th>
+                    <td><input type="text" class="input" placeholder="Father name"></td>
+                </tr>
+                <tr>
+                    <th><label for="MotherName">Enter Mother Name</label></th>
+                    <td><input type="text" class="input" placeholder="Mather name"></td>
+                </tr>
+                <tr>
+                    <th><label for="enter_faher_phone_">Parent number</label></th>
+                    <td><input type="text" class="input" placeholder="Parent number"></td>
+                </tr>
+                <tr>
+                    <th><label for="city">Enter your city</label></th>
+                    <td><input type="text" class="input" placeholder="city name"></td>
+                </tr>
+                <tr>
+                    <th><label for="home_num">Enter your home no:</label></th>
+                    <td><input type="text"class="input" placeholder="number of house"></td>
+                </tr>
+                <tr>
+                    <th><label for="name">Enter St name</label></th>
+                    <td><input type="text" class="input" placeholder="St name"></td>
                 </tr>
             </table>
-        </form><br>
-        <input type="submit" name="" id="">
-    </center>
-    <footer>
-        <center><h3>this website copyrigth @member</h3></center>
+        </form>
+        <input type="checkbox"> <label for="ver">All Information verified</label><br>
+        <input type="submit" class="sum( )"><br>
+        </div>
+        </center>
+        <br>
+        <br>
+    <footer class="footer">
+        <center><p>this website copyrigth @member</p></center>
     </footer>
-    <script src="./index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <center>
+        <form>
+            <table>
+                <tr>
+                    <th>
+                        <p>Enter your name</p>
+                    </th>
+                    <td><input type="text" required pattern="[A-Za-z]+" class="input"></td>
+                </tr>
+            </table>
+            <input type="submit">
+        </form>
+    </center>
+</body>
+<script>
+    const nameInput = document.querySelector("input[type='text']");
+
+    nameInput.addEventListener("invalid", () => {
+        if (nameInput.value === "") {
+            nameInput.setCustomValidity("Enter your username!");
+        } else {
+            nameInput.setCustomValidity(
+                "Usernames can only contain upper and lowercase letters. Try again!"
+            );
+        }
+    });
+</script>
+</html>
