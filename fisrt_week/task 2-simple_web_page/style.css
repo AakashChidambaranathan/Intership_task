@@ -11,6 +11,7 @@ body {
     height: 100%;
     scrollbar-width: none;
 }
+
 .header {
     background: white;
     padding: 10px 20px;
@@ -23,11 +24,13 @@ body {
     flex-direction: column;
     gap: 10px;
 }
+
 .logo {
     width: 150px;
     height: auto;
     margin: 0 auto;
 }
+
 #list {
     display: flex;
     justify-content: center;
@@ -36,15 +39,18 @@ body {
     padding: 0;
     margin: 0;
 }
+
 #list li a {
     text-decoration: none;
     color: black;
     font-size: 22px;
     
 }
+
 .nav-link i {
     margin-right: 6px;
 }
+
 .box {
     width: 95%;
     background-color: white;
@@ -53,6 +59,7 @@ body {
     margin: 25px ;
     border-radius: 10px;
 }
+
 .blogs {
     font-size: 19px;
 }
@@ -79,34 +86,16 @@ td {
     width: 100%;
     overflow-y: auto;
     overflow-x: auto;
+    background-image: url("./homeimage.png");
 }
 .scroll-box2{
-    height: 75%;
+    height: 76%;
     width: 100%;
     overflow-y:auto;
     overflow-x:auto;
+    background-image: url("./addbgiamge.png");
 }
-form {
-    font: 1em sans-serif;
-    max-width: 100%;
-}   
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea,
-fieldset {
-    width: 100%;
-    border: 1px solid #333333;
-    box-sizing: border-box;
-}
-input:invalid {
-    box-shadow: 0 0 5px 1px rgb(255, 0, 0);
-}
-input:focus:invalid {
-    box-shadow: none;
-}
-
-input:invalid::after{
-    color: red;
-    font-size: larger;
-}
+/* #submitb{
+    top: 90%;
+    position: fixed;
+} */

@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>Form Test</title>
 </head>
-<body>
-    <center>
-        <form>
-            <table>
-                <tr>
-                    <th>
-                        <p>Enter your name</p>
-                    </th>
-                    <td><input type="text" required pattern="[A-Za-z]+" class="input"></td>
-                </tr>
-            </table>
-            <input type="submit">
-        </form>
-    </center>
-</body>
-<script>
-    const nameInput = document.querySelector("input[type='text']");
 
-    nameInput.addEventListener("invalid", () => {
-        if (nameInput.value === "") {
-            nameInput.setCustomValidity("Enter your username!");
-        } else {
-            nameInput.setCustomValidity(
-                "Usernames can only contain upper and lowercase letters. Try again!"
-            );
-        }
-    });
-</script>
+<body>
+
+    <p>
+        <label for="t1">What's your favorite fruit? *</label>
+        <input type="text" id="t1" name="fruit" list="l1" required
+            pattern="[Bb]anana|[Cc]herry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range" />
+        <datalist id="l1">
+            <option>Banana</option>
+            <option>Cherry</option>
+            <option>Apple</option>
+            <option>Strawberry</option>
+            <option>Lemon</option>
+            <option>Orange</option>
+        </datalist>
+    </p>
+
+</body>
+
 </html>
+
+<tr>
+    <th>
+        <label for="favorite-author">Favorite Author</label>
+    </th>
+    <td>
+        <input type="text" id="favorite-author" list="author-list" placeholder="pick one">
+        <datalist id="author-list">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+        </datalist>
+    </td>
+</tr>
