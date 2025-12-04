@@ -13,7 +13,7 @@ body {
 }
 
 .header {
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 10px 20px;
     text-align: center;
     position: sticky;
@@ -99,3 +99,9 @@ td {
     top: 90%;
     position: fixed;
 } */
+
+.scroll-box {
+    height: calc(100vh - 150px); /* adjust depending on header/footer height */
+    width: 100%;
+    overflow-y: auto;
+}
