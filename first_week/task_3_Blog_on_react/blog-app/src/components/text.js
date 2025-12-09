@@ -1,6 +1,6 @@
 import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 function Blog_add() {
   const [name, setName] = useState("");
   const [overView, setOverview] = useState("");
@@ -21,9 +21,20 @@ function Blog_add() {
       setSuccessOpen(true);
     }
   };
-  
-  const[move,setMove]=useState()
-  const[up,setup]=useState()
+  const [showScrollButton, setShowScrollButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollButton(window.scrollY > 200); // show after scroll
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -152,7 +163,7 @@ function Blog_add() {
                 </tr>
               </tbody>
             </table>
-            <div colSpan="2" className="text-center p-4 fs-3 overflow-visible overflow-x-hidden">
+            <div colSpan="2" className="text-center p-4 fs-3">
               <button type="submit" className="btn btn-primary fs-3">
                 submit
               </button>
@@ -163,63 +174,28 @@ function Blog_add() {
       <Popup
         open={successOpen}
         modal
-        position="top center"
-        closeOnDocumentClick={false}
+        position="top-center"
         contentStyle={{
-          width: "420px",
-          padding: "0",
-          borderRadius: "10px",
-          overflow: "hidden",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-          background: "#fff",
+          width: "800px",
+          padding: "100px",
+          borderRadius: "15px",
+          background: "blue",
+          boxShadow: " 25px",
         }}
       >
-        {(close) => (
-          <div style={{ textAlign: "center" }}>
-            <div
-              style={{
-                background: "#237befff",
-                color: "white",
-                padding: "15px",
-                fontSize: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <span>Modal Popup</span>
-              <span
-                style={{
-                  cursor: "pointer",
-                  fontSize: "22px",
-                  fontWeight: "bold",
-                }}
-                onClick={close}
-              >
-                ×
-              </span>
-            </div>
-            <div style={{ padding: "20px" }}>
-              <p style={{ fontSize: "16px", marginTop: "10px" }}>Blog added</p>
-            </div>
-            <div
-              style={{
-                borderTop: "1px solid #ddd",
-                padding: "10px",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <button
-                className="bg-blue"
-                onClick={() => window.location.reload()}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
+        <div className="text-center">
+          <h1 style={{ color: "gray", marginBottom: "10px" }}>
+            blog was added
+          </h1>
+          <p>successfully</p>
+          <button
+            className="btn btn-success"
+            style={{ width: "120px" }}
+            onClick={() => window.location.reload()}
+          >
+            close
+          </button>
+        </div>
       </Popup>
       <Fooder />
     </>
