@@ -1,0 +1,3 @@
+- [x] Update Blogcard.js to import motion from framer-motion
+- [x] Wrap the "Read More" button with motion.button and add whileInView animation (e.g., slide in from the right and fade in)
+- [x] Test the animation by running the app

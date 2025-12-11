@@ -11,7 +11,7 @@ function ContactPage() {
           <table className="m-3">
             <tr>
               <th className="fs-3 p-4 text-end">
-                <label for="name">Enter Your name :</label>
+                <label for="name">Enter your name :</label>
               </th>
               <td className="fs-3 p-4 ">
                 <input type="text" placeholder="First Name"></input>

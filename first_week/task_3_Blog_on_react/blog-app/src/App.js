@@ -1,6 +1,7 @@
 import Blogcarspage from './components/Blogcarspage'
 import ContactPage from './components/ContactPage';
 import Header from './components/Header';
+import Profile from './components/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog_add from './components/Blog_add'
 function App(){
@@ -11,6 +12,7 @@ function App(){
       <Route path="/" element={<Blogcarspage/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
       <Route path='/AddBlog' element={<Blog_add/>}/>
+      <Route path='/Profile' element={<Profile/>}/>
     </Routes>
   </Router>
   </>)

@@ -1,11 +1,15 @@
 import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
+import {render} from "react-dom";
+import {motion} from  "framer-motion"
 import { useState,useEffect } from "react";
+import Profile from "./Profile";
 function Blog_add() {
   const [name, setName] = useState("");
   const [overView, setOverview] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
+  const [smove, SetSmove]=useState(false);
 
   const validate = () => {
     let newErrors = {};
@@ -21,10 +25,9 @@ function Blog_add() {
       setSuccessOpen(true);
     }
   };
-  
   const[move,setMove]=useState()
   const[up,setup]=useState()
-
+  const[ak,setak]=useState()
   return (
     <>
       <div className="overflow-auto" style={{ maxHeight: "72vh" }}>
@@ -77,14 +80,6 @@ function Blog_add() {
                   </th>
                   <td className="fs-3 p-4">
                     <input id="phone" type="number" placeholder="Phone no" />
-                  </td>
-                </tr>
-                <tr>
-                  <th className="fs-3 p-4 text-end">
-                    <label>Upload file :</label>
-                  </th>
-                  <td className="fs-3 p-4">
-                    <input id="file" type="file" />
                   </td>
                 </tr>
                 <tr>
@@ -152,8 +147,11 @@ function Blog_add() {
                 </tr>
               </tbody>
             </table>
-            <div colSpan="2" className="text-center p-4 fs-3 overflow-visible overflow-x-hidden">
-              <button type="submit" className="btn btn-primary fs-3">
+            <div className="col-2">
+              <button
+                type="submit"
+                className="btn-btn-primary"
+              >
                 submit
               </button>
             </div>
@@ -163,15 +161,20 @@ function Blog_add() {
       <Popup
         open={successOpen}
         modal
-        position="top center"
         closeOnDocumentClick={false}
+        overlayStyle={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          paddingTop: "70px",
+        }}
         contentStyle={{
           width: "420px",
           padding: "0",
           borderRadius: "10px",
           overflow: "hidden",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-          background: "#fff",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+          background: "#cfbbbbff",
         }}
       >
         {(close) => (
@@ -194,8 +197,11 @@ function Blog_add() {
                   cursor: "pointer",
                   fontSize: "22px",
                   fontWeight: "bold",
+                  lineHeight: "1",
                 }}
-                onClick={close}
+                onClick={() => {
+                  setSuccessOpen(false);
+                }}
               >
                 ×
               </span>
@@ -211,12 +217,7 @@ function Blog_add() {
                 justifyContent: "flex-end",
               }}
             >
-              <button
-                className="bg-blue"
-                onClick={() => window.location.reload()}
-              >
-                Close
-              </button>
+              <button className="bg-blue" onClick={() => setSuccessOpen(false)}>close</button>
             </div>
           </div>
         )}
