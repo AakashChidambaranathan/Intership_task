@@ -6,31 +6,41 @@ import { useState,useEffect } from "react";
 import Profile from "./Profile";
 function Blog_add() {
   const [name, setName] = useState("");
-  const [overView, setOverview] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
-  const [smove, SetSmove]=useState(false);
+  const [smove, SetSmove] = useState(false);
 
   const validate = () => {
     let newErrors = {};
     if (!name.trim()) newErrors.name = "      fill this";
-    if (!overView.trim()) newErrors.overView = "      fill this";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validate()) {
+      localStorage.setItem(
+        "profileData",
+        JSON.stringify({
+          name: name,
+          last_name: document.getElementById("last_name")?.value || "",
+          email: document.getElementById("email")?.value || "",
+          Titel_blog: document.getElementById("title")?.value || "",
+          phone: document.getElementById("phone")?.value || "",
+          fav_author: document.getElementById("fav_author")?.value || "",
+          address: document.getElementById("address")?.value || "",
+          father_name: document.getElementById("Father name")?.value || "",
+          mother_name: document.getElementById("Mother_name")?.value || "",
+        })
+      );
       setSuccessOpen(true);
     }
   };
-  const[move,setMove]=useState()
-  const[up,setup]=useState()
-  const[ak,setak]=useState()
   return (
     <>
-      <div className="overflow-auto" style={{ maxHeight: "72vh" }}>
+      <div className="overflow-auto" style={{ maxHeight: "73.5vh" }}>
         <center>
           <form onSubmit={handleSubmit}>
             <table>
@@ -82,23 +92,12 @@ function Blog_add() {
                     <input id="phone" type="number" placeholder="Phone no" />
                   </td>
                 </tr>
-                <tr>
+                <tr> 
                   <th className="fs-3 p-4 text-end">
-                    <label>Write about overView* :</label>
+                    <label>Write about overView :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input
-                      id="overview"
-                      type="text"
-                      placeholder="Overview"
-                      value={overView}
-                      onChange={(e) => setOverview(e.target.value)}
-                    />
-                    {errors.overView && (
-                      <small>
-                        <div className="text-danger">{errors.overView}</div>
-                      </small>
-                    )}
+                    <input id="overview" type="text" placeholder="Overview" />
                   </td>
                 </tr>
                 <tr>
@@ -139,7 +138,7 @@ function Blog_add() {
                   </th>
                   <td className="fs-3 p-4">
                     <input
-                      id="fav_author"
+                      id="Mother_name"
                       type="text"
                       placeholder="Mother name"
                     />
@@ -148,10 +147,7 @@ function Blog_add() {
               </tbody>
             </table>
             <div className="col-2">
-              <button
-                type="submit"
-                className="btn-btn-primary"
-              >
+              <button type="submit" className="btn btn-primary fs-4">
                 submit
               </button>
             </div>
@@ -161,7 +157,7 @@ function Blog_add() {
       <Popup
         open={successOpen}
         modal
-        closeOnDocumentClick={false}
+        closeOnDcumentClick={false}
         overlayStyle={{
           display: "flex",
           justifyContent: "center",
@@ -200,7 +196,7 @@ function Blog_add() {
                   lineHeight: "1",
                 }}
                 onClick={() => {
-                  setSuccessOpen(false);
+                  window.location.reload();
                 }}
               >
                 ×
@@ -217,7 +213,14 @@ function Blog_add() {
                 justifyContent: "flex-end",
               }}
             >
-              <button className="bg-blue" onClick={() => setSuccessOpen(false)}>close</button>
+              <button
+                className="bg-blue"
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                close
+              </button>
             </div>
           </div>
         )}

@@ -1,54 +1,60 @@
-import Fooder from "./Fooder"
-import Header from "./Header"
-import data from "./Blog_add"
-import react from "react"
-function Profile(props){
-    return (
-      <>
-        <center>
-          <form>
-            <table>
-            <tr>
-                <td className="fs-3 p-4">Name:</td>
-                <th>{props.name}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Last_name:</td>
-                <th>{props.last_name}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Email:</td>
-                <th>{props.email}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Title_blog:</td>
-                <th> {props.Titel_blog} </th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Phone_no:</td>
-                <th>{props.phone}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">fav_author:</td>
-                <th>{props.fav_author}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Address:</td>
-                <th>{props.address}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Father name:</td>
-                <th>{props.fathe_namer}</th>
-            </tr>
-            <tr>
-                <td className="fs-3 p-4">Mother name:</td>
-                <th>{props.mother_name}</th>
-            </tr>
-            </table>
-        </form>
-        </center>
-        <Fooder />
-    </>
-    ); 
+import Fooder from "./Fooder";
+
+function Profile() {
+const data = JSON.parse(localStorage.getItem("profileData"));
+
+if (!data) return null;
+
+return (
+  <>
+    <div className="overflow-auto" style={{ maxHeight: "72vh" }}>
+      <center>
+        <table>
+          <tbody className="row-2">
+            <b>
+              <tr>
+                <td className="fs-3 p-4 text-center">Name : </td>
+                <td className="fs-3 p-4 text-center">{data.name}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Last Name : </td>
+                <td className="fs-3 p-4 text-center">{data.last_name}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Email : </td>
+                <td className="fs-3 p-4 text-center">{data.email}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Title Blog : </td>
+                <td className="fs-3 p-4 text-center">{data.Titel_blog}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Phone : </td>
+                <td className="fs-3 p-4 text-center">{data.phone}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Favorite Author : </td>
+                <td className="fs-3 p-4 text-center">{data.fav_author}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Address : </td>
+                <td className="fs-3 p-4 text-center">{data.address}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Father Name : </td>
+                <td className="fs-3 p-4 text-center">{data.father_name}</td>
+              </tr>
+              <tr>
+                <td className="fs-3 p-4 text-center">Mother Name : </td>
+                <td className="fs-3 p-4 text-center">{data.mother_name}</td>
+              </tr>
+            </b>
+          </tbody>
+        </table>
+      </center>
+    </div>
+    <Fooder />
+  </>
+);
 }
-export default Profile
+export default Profile;
