@@ -1,16 +1,14 @@
 import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
-import { render } from "react-dom";
-import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
-import Profile from "./Profile";
+import { Link } from "react-router-dom";
+
 function Blog_add() {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
   const [center, setCenter] = useState(false);
-
   const scrollRef = useRef(null);
   useEffect(() => {
     const el = scrollRef.current;
@@ -26,7 +24,7 @@ function Blog_add() {
       } else {
         setCenter(false);
       }
-
+      
       lastScrollTop = current;
     };
 
@@ -36,7 +34,7 @@ function Blog_add() {
 
   const validate = () => {
     let newErrors = {};
-    if (!name.trim()) newErrors.name = "      fill this";
+    if (!name.trim()) newErrors.name = "fill this";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -46,7 +44,7 @@ function Blog_add() {
 
     if (validate()) {
       localStorage.setItem(
-        "profileData",
+        "Blogdata",
         JSON.stringify({
           name: name,
           last_name: document.getElementById("last_name")?.value || "",
@@ -75,7 +73,7 @@ function Blog_add() {
               <tbody>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your name* :</label>
+                    <label>Enter Your Name* :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -90,7 +88,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your last :</label>
+                    <label>Enter Your Last :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="last_name" type="text" placeholder="Last Name" />
@@ -106,7 +104,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Title of blog :</label>
+                    <label>Title Of Blog :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="title" type="text" placeholder="Title" />
@@ -114,15 +112,20 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your phone no :</label>
+                    <label>Enter Your Phone no :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="phone" type="number" placeholder="Phone no" />
+                    <input
+                      id="phone"
+                      type="text"
+                      placeholder="Phone no"
+                      maxLength={"10"}
+                    />
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Write about overview :</label>
+                    <label>Write About Overview :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="overview" type="text" placeholder="Overview" />
@@ -130,7 +133,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Favorite author :</label>
+                    <label>Favorite Author :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -150,7 +153,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Father name :</label>
+                    <label>Father Name :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -162,7 +165,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Mother name :</label>
+                    <label>Mother Name :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -184,7 +187,7 @@ function Blog_add() {
                   bottom: center ? "10%" : "67px",
                   transition: "bottom 0.4s ease-in-out",
                 }}
-              >
+              > 
                 Submit
               </button>
             </div>
@@ -208,7 +211,7 @@ function Blog_add() {
           borderRadius: "10px",
           overflow: "hidden",
           boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-          background: "#cfbbbbff",
+          background: "#ffffffff",
         }}
       >
         {(close) => (
@@ -227,25 +230,17 @@ function Blog_add() {
                 ×
               </span>
             </div>
-
             <div className="p-4">
-              <p className="mb-0">Blog added</p>
+              <p className="mb-0">Blog Information was Added</p>
             </div>
-
             <div className="border-top p-3 text-end">
-              <button
-                className="btn btn-primary"
-                onClick={() => {
-                  window.location.reload();
-                }}
-              >
-                Close
-              </button>
+              <Link to="/contact" className="btn btn-primary">
+                Next
+              </Link>
             </div>
           </div>
         )}
       </Popup>
-
       <Fooder />
     </>
   );

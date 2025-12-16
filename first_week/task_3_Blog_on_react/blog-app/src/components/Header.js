@@ -15,9 +15,6 @@ function Header(){
                         <Link to="/AddBlog" className="p-4 fw-bold fs-4 text-decoration-none">Add Blog</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/contact" className="p-4 fw-bold fs-4 text-decoration-none" >Contact</Link>
-                    </li>
-                    <li className="nav-item">
                         <Link to="/Profile" className="p-4 fw-bold fs-4 text-decoration-none">Profile</Link>
                     </li>
                 </ul>

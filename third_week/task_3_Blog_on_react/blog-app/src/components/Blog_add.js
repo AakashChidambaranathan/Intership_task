@@ -1,14 +1,38 @@
 import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
-import {render} from "react-dom";
-import {motion} from  "framer-motion"
-import { useState,useEffect } from "react";
+import { render } from "react-dom";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 import Profile from "./Profile";
 function Blog_add() {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
-  const [smove, SetSmove] = useState(false);
+  const [center, setCenter] = useState(false);
+
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let lastScrollTop = el.scrollTop;
+
+    const handleScroll = () => {
+      const current = el.scrollTop;
+
+      if (current < lastScrollTop) {
+        setCenter(true);
+      } else {
+        setCenter(false);
+      }
+
+      lastScrollTop = current;
+    };
+
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const validate = () => {
     let newErrors = {};
@@ -40,7 +64,11 @@ function Blog_add() {
   };
   return (
     <>
-      <div className="overflow-auto" style={{ maxHeight: "73.5vh" }}>
+      <div
+        ref={scrollRef}
+        className="overflow-auto"
+        style={{ maxHeight: "75vh" }}
+      >
         <center>
           <form onSubmit={handleSubmit}>
             <table>
@@ -92,9 +120,9 @@ function Blog_add() {
                     <input id="phone" type="number" placeholder="Phone no" />
                   </td>
                 </tr>
-                <tr> 
+                <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Write about overView :</label>
+                    <label>Write about overview :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="overview" type="text" placeholder="Overview" />
@@ -146,9 +174,18 @@ function Blog_add() {
                 </tr>
               </tbody>
             </table>
+            <br></br>
+            <br />
             <div className="col-2">
-              <button type="submit" className="btn btn-primary fs-4">
-                submit
+              <button
+                type="submit"
+                className="btn btn-primary fs-4 position-fixed start-50 translate-middle-x shadow"
+                style={{
+                  bottom: center ? "10%" : "67px",
+                  transition: "bottom 0.4s ease-in-out",
+                }}
+              >
+                Submit
               </button>
             </div>
           </form>
@@ -156,45 +193,33 @@ function Blog_add() {
       </div>
       <Popup
         open={successOpen}
-        modal
-        closeOnDcumentClick={false}
+        closeOnDocumentClick={false}
         overlayStyle={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          paddingTop: "70px",
+          background: "rgba(0,0,0,0.3)",
         }}
         contentStyle={{
-          width: "420px",
+          position: "fixed",
+          top: "210px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "700px",
+          maxWidth: "90vw",
           padding: "0",
           borderRadius: "10px",
           overflow: "hidden",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
           background: "#cfbbbbff",
         }}
       >
         {(close) => (
-          <div style={{ textAlign: "center" }}>
+          <div className="text-center">
             <div
-              style={{
-                background: "#237befff",
-                color: "white",
-                padding: "15px",
-                fontSize: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+              className="d-flex justify-content-between align-items-center px-3 py-2"
+              style={{ background: "#237befff", color: "white" }}
             >
-              <span>Modal Popup</span>
+              <span className="fw-bold">Success</span>
               <span
-                style={{
-                  cursor: "pointer",
-                  fontSize: "22px",
-                  fontWeight: "bold",
-                  lineHeight: "1",
-                }}
+                style={{ cursor: "pointer", fontSize: "22px" }}
                 onClick={() => {
                   window.location.reload();
                 }}
@@ -202,29 +227,25 @@ function Blog_add() {
                 ×
               </span>
             </div>
-            <div style={{ padding: "20px" }}>
-              <p style={{ fontSize: "16px", marginTop: "10px" }}>Blog added</p>
+
+            <div className="p-4">
+              <p className="mb-0">Blog added</p>
             </div>
-            <div
-              style={{
-                borderTop: "1px solid #ddd",
-                padding: "10px",
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
+
+            <div className="border-top p-3 text-end">
               <button
-                className="bg-blue"
+                className="btn btn-primary"
                 onClick={() => {
                   window.location.reload();
                 }}
               >
-                close
+                Close
               </button>
             </div>
           </div>
         )}
       </Popup>
+
       <Fooder />
     </>
   );
