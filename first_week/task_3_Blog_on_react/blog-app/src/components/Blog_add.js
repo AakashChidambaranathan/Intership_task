@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-
+import labels from "./lables";
 function Blog_add() {
   const [name, setName] = useState("");
   const [errors, setErrors] = useState({});
@@ -73,7 +73,7 @@ function Blog_add() {
               <tbody>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter Your Name* :</label>
+                    <label>{labels.name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -88,7 +88,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter Your Last :</label>
+                    <label id="">{labels.last_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="last_name" type="text" placeholder="Last Name" />
@@ -96,7 +96,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label htmlFor="email">Email :</label>
+                    <label htmlFor="email">{labels.email}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="email" type="email" placeholder="Email" />
@@ -104,7 +104,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Title Of Blog :</label>
+                    <label>{labels.Titel_blog}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="title" type="text" placeholder="Title" />
@@ -112,7 +112,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter Your Phone no :</label>
+                    <label>{labels.phone}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -125,7 +125,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Write About Overview :</label>
+                    <label>{labels.about}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="overview" type="text" placeholder="Overview" />
@@ -133,7 +133,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Favorite Author :</label>
+                    <label>{labels.fav_author}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -145,7 +145,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Address :</label>
+                    <label>{labels.address}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input id="address" type="text" placeholder="Address" />
@@ -153,7 +153,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Father Name :</label>
+                    <label>{labels.father_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -165,7 +165,7 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Mother Name :</label>
+                    <label>{labels.mother_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -187,7 +187,7 @@ function Blog_add() {
                   bottom: center ? "10%" : "67px",
                   transition: "bottom 0.4s ease-in-out",
                 }}
-              > 
+              >
                 Submit
               </button>
             </div>

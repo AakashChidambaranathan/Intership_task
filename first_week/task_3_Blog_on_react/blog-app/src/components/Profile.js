@@ -1,37 +1,33 @@
 import Fooder from "./Fooder";
 import * as XLSX from "xlsx";
-
+import labels from "./lables";
 function Profile() {
   const data = JSON.parse(localStorage.getItem("blogAndprofileData"));
-
-  if (!data) return null;
+  console.log(data)
 
   const downloadExcel = () => {
     const excelData = [
       {
-        Name: data.name,
-        "Last name": data.last_name,
-        Email: data.email,
-        "Title blog": data.Titel_blog,
-        Phone: data.phone,
-        "Favorite author": data.fav_author,
-        Address: data.address,
-        "Father name": data.father_name,
-        "Mother name": data.mother_name,
-        "Account No": data.account,
-        "Drive link": data.drivelink,
-        Password: data.password,
+        [labels.name]: data.name,
+        [labels.last_name]: data.last_name,
+        [labels.email]: data.email,
+        [labels.Titel_blog]: data.Titel_blog,
+        [labels.phone]: data.phone,
+        [labels.father_name]: data.fav_author,
+        [labels.address]: data.address,
+        [labels.father_name]: data.father_name,
+        [labels.mother_name]: data.mother_name,
+        [labels.Accountno]: data.account,
+        [labels.Drive_link]: data.drivelink,
+        [labels.password]: data.password,
       },
-
     ];
-
     const worksheet = XLSX.utils.json_to_sheet(excelData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Profile Data");
     const safeName = data.name.replace(/\s+/g, "_");
     XLSX.writeFile(workbook, `${safeName}.xlsx`);
   };
-
   return (
     <>
       <div className="container my-5">
@@ -41,47 +37,47 @@ function Profile() {
               <table className="table table-bordered fs-3">
                 <tbody>
                   <tr>
-                    <th>Name</th>
+                    <th>{labels.name}</th>
                     <td>{data.name}</td>
                   </tr>
                   <tr>
-                    <th>Last Name</th>
+                    <th>{labels.last_name}</th>
                     <td>{data.last_name}</td>
                   </tr>
                   <tr>
-                    <th>Email</th>
+                    <th>{labels.email}</th>
                     <td>{data.email}</td>
                   </tr>
                   <tr>
-                    <th>Title Blog</th>
+                    <th>{labels.Titel_blog}</th>
                     <td>{data.Titel_blog}</td>
                   </tr>
                   <tr>
-                    <th>Phone</th>
+                    <th>{labels.phone}</th>
                     <td>{data.phone}</td>
                   </tr>
                   <tr>
-                    <th>Favorite Author</th>
+                    <th>{labels.fav_author}</th>
                     <td>{data.fav_author}</td>
                   </tr>
                   <tr>
-                    <th>Address</th>
+                    <th>{labels.address}</th>
                     <td>{data.address}</td>
                   </tr>
                   <tr>
-                    <th>Father Name</th>
+                    <th>{labels.father_name}</th>
                     <td>{data.father_name}</td>
                   </tr>
                   <tr>
-                    <th>Mother Name</th>
+                    <th>{labels.mother_name}</th>
                     <td>{data.mother_name}</td>
                   </tr>
                   <tr>
-                    <th>Account No</th>
+                    <th>{labels.Accountno}</th>
                     <td>{data.account}</td>
                   </tr>
                   <tr>
-                    <th>Drive Link</th>
+                    <th>{labels.Drive_link}</th>
                     <td>
                       <a
                         href={data.drivelink}
@@ -93,7 +89,7 @@ function Profile() {
                     </td>
                   </tr>
                   <tr>
-                    <th>Password</th>
+                    <th>{labels.password}</th>
                     <td>{data.password}</td>
                   </tr>
                 </tbody>
@@ -102,8 +98,8 @@ function Profile() {
           </div>
           <div className="col-md-4 d-flex justify-content-center align-items-Start">
             <button
-              className="btn btn-success btn-lg px-5 mt-3"
-              onClick={downloadExcel} 
+              className="btn btn-success btn-lg px-5 mt-4"
+              onClick={downloadExcel}
             >
               Download Excel
             </button>
