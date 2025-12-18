@@ -3,7 +3,7 @@ import * as XLSX from "xlsx";
 import labels from "./lables";
 function Profile() {
   const data = JSON.parse(localStorage.getItem("blogAndprofileData"));
-  console.log(data)
+  console.log(data);
 
   const downloadExcel = () => {
     const excelData = [

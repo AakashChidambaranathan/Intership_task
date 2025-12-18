@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from 'D:/intership/task/first_week/task_3_Blog_on_react/blog-app/src/assets/Blogger-Logo.jpg'
+import Logo from '../assets/Blogger-Logo.jpg'
 function Header(){
     return(
         <>

@@ -2,13 +2,21 @@ import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
-import labels from "./lables";
 function Blog_add() {
   const [name, setName] = useState("");
+  const [lastname,setlastname]=useState("");
+  const [email,setemail]=useState("")
+  const [title,settitle]=useState("")
+  const [phone,setphone]=useState("")
+  const [overviews,setoverviews]=useState("")
+  const [f_author,setf_author]=useState("")
+  const [address,setaddress]=useState("")
+  const [father,setfather]=useState("")
+  const [mother,setmother]=useState("")
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
   const [center, setCenter] = useState(false);
+
   const scrollRef = useRef(null);
   useEffect(() => {
     const el = scrollRef.current;
@@ -24,7 +32,7 @@ function Blog_add() {
       } else {
         setCenter(false);
       }
-      
+
       lastScrollTop = current;
     };
 
@@ -34,15 +42,32 @@ function Blog_add() {
 
   const validate = () => {
     let newErrors = {};
-    if (!name.trim()) newErrors.name = "fill this";
+    if (!name.trim()) newErrors.name = "      fill this";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
     if (validate()) {
+      const formDate={
+        name,lastname,email,title,phone,overviews,f_author,address,father,mother,
+      }
+      try {
+        const response = await fetch("http://localhost:5000/save-user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userid: name, data: formDate }),
+        });
+        if (response.ok) {
+          console.log("save form add_blog_file")
+          setSuccessOpen(true);
+        } else {
+          console.error("Failed to save data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
       localStorage.setItem(
         "Blogdata",
         JSON.stringify({
@@ -57,7 +82,6 @@ function Blog_add() {
           mother_name: document.getElementById("Mother_name")?.value || "",
         })
       );
-      setSuccessOpen(true);
     }
   };
   return (
@@ -73,7 +97,7 @@ function Blog_add() {
               <tbody>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.name}</label>
+                    <label>Enter your name* :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
@@ -88,90 +112,90 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label id="">{labels.last_name}</label>
+                    <label>Enter your last :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="last_name" type="text" placeholder="Last Name" />
+                    <input id="last_name" type="text" placeholder="Last Name" value={lastname} onChange={(e)=>setlastname(e.target.value)}/>
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label htmlFor="email">{labels.email}</label>
+                    <label htmlFor="email">Email :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="email" type="email" placeholder="Email" />
+                    <input id="email" type="email" placeholder="Email" value={email} onChange={(e)=>setemail(e.target.value)} />
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.Titel_blog}</label>
+                    <label>Title of blog :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="title" type="text" placeholder="Title" />
+                    <input id="title" type="text" placeholder="Title" value={title} onChange={(e)=>settitle(e.target.value)}/>
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.phone}</label>
+                    <label>Enter your phone no :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input
-                      id="phone"
-                      type="text"
-                      placeholder="Phone no"
-                      maxLength={"10"}
-                    />
+                    <input id="phone" type="text" placeholder="Phone no" maxLength={"10"} value={phone} onChange={(e)=>setphone(e.target.value)}/>
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.about}</label>
+                    <label>Write about overview :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="overview" type="text" placeholder="Overview" />
+                    <input id="overview" type="text" placeholder="Overview" value={overviews} onChange={(e)=>setoverviews(e.target.value)}/>
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.fav_author}</label>
+                    <label>Favorite author :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="fav_author"
                       type="text"
                       placeholder="Author name"
+                      value={f_author}
+                      onChange={(e)=>setf_author(e.target.value)}
                     />
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.address}</label>
+                    <label>Address :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="address" type="text" placeholder="Address" />
+                    <input id="address" type="text" placeholder="Address" value={address} onChange={(e)=>setaddress(e.target.value)}/>
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.father_name}</label>
+                    <label>Father name :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="Father name"
                       type="text"
                       placeholder="Father name"
+                      value={father}
+                      onChange={(e)=>setfather(e.target.value)}
                     />
                   </td>
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>{labels.mother_name}</label>
+                    <label>Mother name :</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="Mother_name"
                       type="text"
                       placeholder="Mother name"
+                      onChange={(e)=>setmother(e.target.value)}
                     />
                   </td>
                 </tr>
@@ -211,7 +235,7 @@ function Blog_add() {
           borderRadius: "10px",
           overflow: "hidden",
           boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-          background: "#ffffffff",
+          background: "#cfbbbbff",
         }}
       >
         {(close) => (
@@ -231,12 +255,17 @@ function Blog_add() {
               </span>
             </div>
             <div className="p-4">
-              <p className="mb-0">Blog Information was Added</p>
+              <p className="mb-0">Blog added</p>
             </div>
             <div className="border-top p-3 text-end">
-              <Link to="/contact" className="btn btn-primary">
-                Next
-              </Link>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Close
+              </button>
             </div>
           </div>
         )}

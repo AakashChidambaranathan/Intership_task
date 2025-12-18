@@ -1,0 +1,34 @@
+15/12/2025
+create animations for button
+show data on from to other page like(profile page)✅	
+popup change like top on screen
+change
+
+
+16/12/2025
+text alignment ✅
+than change on contact page✅
+add some more filed on profile page ✅
+
+Add_blog page✅
+text alignment✅
+Submit button click to contact page✅
+
+contact page
+text alignment ✅
+change filed and also set get data a and display✅
+
+profile page
+text aligment ✅
+change download button place ✅
+and get and display contact page✅
+
+file name user enter name✅
+
+
+17/12/2025
+Change everything in dynamic on ui✅
+
+
+18/12/2025
+store a data on json file on public folder ✅
