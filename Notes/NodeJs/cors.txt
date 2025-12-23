@@ -40,7 +40,7 @@ Even **port change** = different origin
 
 Without CORS:
 
-* Any website could call your bank API
+* Any website co  uld call your bank API
 * Read your private data
 * Perform malicious actions
 
