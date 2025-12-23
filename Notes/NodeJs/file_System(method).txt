@@ -1,0 +1,239 @@
+Below is a **complete + clear list of `fs` (File System) methods** used in **real Node.js projects**, explained **simply** with **examples** 👇
+(These are **interview + project important**)
+
+---
+
+# 📂 What is `fs`?
+
+`fs` is a **built-in Node.js module** used to **work with files**:
+
+* create
+* read
+* update
+* delete
+
+```js
+const fs = require("fs");
+```
+
+---
+
+# 🔥 MOST USED `fs` METHODS (YOU MUST KNOW)
+
+---
+
+## 1️⃣ `fs.writeFile()` – Create / Overwrite File
+
+📌 Writes data to a file (async)
+
+```js
+fs.writeFile("user.json", JSON.stringify({ name: "Aakash" }), (err) => {
+  if (err) throw err;
+  console.log("File created");
+});
+```
+
+✔ Creates file if not exists
+✔ Overwrites if exists
+
+---
+
+## 2️⃣ `fs.readFile()` – Read File
+
+📌 Reads file content (async)
+
+```js
+fs.readFile("user.json", "utf-8", (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+```
+
+---
+
+## 3️⃣ `fs.appendFile()` – Add Data to File
+
+📌 Adds data without deleting old content
+
+```js
+fs.appendFile("log.txt", "\nNew entry", () => {
+  console.log("Data appended");
+});
+```
+
+---
+
+## 4️⃣ `fs.unlink()` – Delete File
+
+📌 Deletes a file
+
+```js
+fs.unlink("user.json", () => {
+  console.log("File deleted");
+});
+```
+
+---
+
+## 5️⃣ `fs.existsSync()` – Check File Exists
+
+📌 Returns `true` or `false`
+
+```js
+if (fs.existsSync("user.json")) {
+  console.log("File exists");
+}
+```
+
+✔ Used before read/write
+
+---
+
+## 6️⃣ `fs.mkdir()` – Create Folder
+
+📌 Create directory
+
+```js
+fs.mkdir("data", { recursive: true }, () => {
+  console.log("Folder created");
+});
+```
+
+---
+
+## 7️⃣ `fs.readdir()` – Read Folder Files
+
+📌 Lists files inside folder
+
+```js
+fs.readdir("data", (err, files) => {
+  console.log(files);
+});
+```
+
+---
+
+## 8️⃣ `fs.rename()` – Rename File
+
+📌 Rename file or move file
+
+```js
+fs.rename("old.json", "new.json", () => {
+  console.log("File renamed");
+});
+```
+
+---
+
+## 9️⃣ `fs.copyFile()` – Copy File
+
+📌 Copy file content
+
+```js
+fs.copyFile("a.txt", "b.txt", () => {
+  console.log("File copied");
+});
+```
+
+---
+
+## 🔥 SYNC METHODS (Blocking – Use Carefully)
+
+> Used for **small scripts**, **NOT recommended in servers**
+
+---
+
+### 🔹 `fs.writeFileSync()`
+
+```js
+fs.writeFileSync("data.json", "Hello");
+```
+
+---
+
+### 🔹 `fs.readFileSync()`
+
+```js
+const data = fs.readFileSync("data.json", "utf-8");
+console.log(data);
+```
+
+---
+
+### 🔹 `fs.unlinkSync()`
+
+```js
+fs.unlinkSync("data.json");
+```
+
+---
+
+# 🧠 Async vs Sync (INTERVIEW ⭐)
+
+| Async           | Sync             |
+| --------------- | ---------------- |
+| Non-blocking    | Blocking         |
+| Faster          | Slower           |
+| Used in servers | Avoid in servers |
+
+✔ Always prefer **async** in Express apps
+
+---
+
+# 🔄 Real Project Example (JSON Storage)
+
+```js
+const fs = require("fs");
+
+const saveUser = (user) => {
+  let users = [];
+
+  if (fs.existsSync("users.json")) {
+    users = JSON.parse(fs.readFileSync("users.json"));
+  }
+
+  users.push(user);
+
+  fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+};
+```
+
+---
+
+# 🧠 Easy Memory Trick
+
+* **write** → create
+* **read** → fetch
+* **append** → add
+* **unlink** → delete
+* **exists** → check
+* **mkdir** → folder
+
+---
+
+# 🎯 fs METHODS SUMMARY TABLE
+
+| Method     | Purpose            |
+| ---------- | ------------------ |
+| writeFile  | Create / overwrite |
+| readFile   | Read file          |
+| appendFile | Add data           |
+| unlink     | Delete file        |
+| existsSync | Check file         |
+| mkdir      | Create folder      |
+| readdir    | Read folder        |
+| rename     | Rename             |
+| copyFile   | Copy               |
+
+---
+
+# 🔥 NEXT TOPICS (Choose One)
+
+Reply with a number 👇
+1️⃣ `fs` with Express API
+2️⃣ File upload using `multer`
+3️⃣ Error handling in fs
+4️⃣ fs interview questions
+5️⃣ Real mini project using fs
+
+I’ll continue step-by-step 😊

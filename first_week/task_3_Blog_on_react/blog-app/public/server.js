@@ -1,24 +1,28 @@
 const express = require("express");
-const { a } = require("framer-motion/client");
 const fs = require("fs");
-const { get } = require("http");
 const path = require("path");
-const { data } = require("react-router-dom");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-const data_dir = path.join(__dirname, "data");
+const PORT = 5000;
 
-if (!fs.existsSync(data_dir)) {
-  fs.mkdirSync(data_dir);
-}
-
-app.post("/save-user", (req, res) => {
-  const { userid, data } = req.body;
-  const filePath = path.join(data_dir, `${userid}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-  res.json({ message: "user data saved" });
+app.post("/submit", (req, res) => {
+  const { name, email, phone, title, overviews, f_author, address, father, mother } = req.body;
+  if (!name) {
+    return res.status(400).json({ message: "Name required" });
+  }
+  const userData = { name, email, phone, title, overviews, f_author, address, father, mother };
+  const filePath = path.join(__dirname, `${name}.json`);
+  fs.writeFile(filePath, JSON.stringify(userData, null, 2), (err) => {
+    if (err) {
+      return res.status(500).json({ message: "Error saving file" });
+    }
+    res.json({ message: "Data saved successfully" });
+  });
 });
-
-app.listen(5000, () => console.log("server start"));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:5000`);
+});

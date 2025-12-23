@@ -4,15 +4,15 @@ import { useState, useEffect } from "react";
 import { useRef } from "react";
 function Blog_add() {
   const [name, setName] = useState("");
-  const [lastname,setlastname]=useState("");
-  const [email,setemail]=useState("")
-  const [title,settitle]=useState("")
-  const [phone,setphone]=useState("")
-  const [overviews,setoverviews]=useState("")
-  const [f_author,setf_author]=useState("")
-  const [address,setaddress]=useState("")
-  const [father,setfather]=useState("")
-  const [mother,setmother]=useState("")
+  const [lastname, setlastname] = useState("");
+  const [email, setemail] = useState("");
+  const [title, settitle] = useState("");
+  const [phone, setphone] = useState("");
+  const [overviews, setoverviews] = useState("");
+  const [f_author, setf_author] = useState("");
+  const [address, setaddress] = useState("");
+  const [father, setfather] = useState("");
+  const [mother, setmother] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
   const [center, setCenter] = useState(false);
@@ -42,48 +42,53 @@ function Blog_add() {
 
   const validate = () => {
     let newErrors = {};
-    if (!name.trim()) newErrors.name = "      fill this";
+    if (!name.trim()) newErrors.name = "fill this";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      const formDate={
-        name,lastname,email,title,phone,overviews,f_author,address,father,mother,
-      }
-      try {
-        const response = await fetch("http://localhost:5000/save-user", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userid: name, data: formDate }),
-        });
-        if (response.ok) {
-          console.log("save form add_blog_file")
-          setSuccessOpen(true);
-        } else {
-          console.error("Failed to save data");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-      localStorage.setItem(
-        "Blogdata",
-        JSON.stringify({
-          name: name,
-          last_name: document.getElementById("last_name")?.value || "",
-          email: document.getElementById("email")?.value || "",
-          Titel_blog: document.getElementById("title")?.value || "",
-          phone: document.getElementById("phone")?.value || "",
-          fav_author: document.getElementById("fav_author")?.value || "",
-          address: document.getElementById("address")?.value || "",
-          father_name: document.getElementById("Father name")?.value || "",
-          mother_name: document.getElementById("Mother_name")?.value || "",
-        })
-      );
+
+    const response = await fetch("http://localhost:5000/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        title,
+        overviews,
+        f_author,
+        address,
+        father,
+        mother,
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      console.log("save form add_blog_file");
+      setSuccessOpen(true);
+    } else {
+      console.error("Failed to save data");
     }
   };
+  localStorage.setItem(
+    "Blogdata",
+    JSON.stringify({
+      name: name,
+      last_name: document.getElementById("last_name")?.value || "",
+      email: document.getElementById("email")?.value || "",
+      Titel_blog: document.getElementById("title")?.value || "",
+      phone: document.getElementById("phone")?.value || "",
+      fav_author: document.getElementById("fav_author")?.value || "",
+      address: document.getElementById("address")?.value || "",
+      father_name: document.getElementById("Father name")?.value || "",
+      mother_name: document.getElementById("Mother_name")?.value || "",
+    })
+  );
   return (
     <>
       <div
@@ -115,7 +120,13 @@ function Blog_add() {
                     <label>Enter your last :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="last_name" type="text" placeholder="Last Name" value={lastname} onChange={(e)=>setlastname(e.target.value)}/>
+                    <input
+                      id="last_name"
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastname}
+                      onChange={(e) => setlastname(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -123,7 +134,13 @@ function Blog_add() {
                     <label htmlFor="email">Email :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="email" type="email" placeholder="Email" value={email} onChange={(e)=>setemail(e.target.value)} />
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setemail(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -131,7 +148,13 @@ function Blog_add() {
                     <label>Title of blog :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="title" type="text" placeholder="Title" value={title} onChange={(e)=>settitle(e.target.value)}/>
+                    <input
+                      id="title"
+                      type="text"
+                      placeholder="Title"
+                      value={title}
+                      onChange={(e) => settitle(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -139,7 +162,14 @@ function Blog_add() {
                     <label>Enter your phone no :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="phone" type="text" placeholder="Phone no" maxLength={"10"} value={phone} onChange={(e)=>setphone(e.target.value)}/>
+                    <input
+                      id="phone"
+                      type="text"
+                      placeholder="Phone no"
+                      maxLength={"10"}
+                      value={phone}
+                      onChange={(e) => setphone(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -147,7 +177,13 @@ function Blog_add() {
                     <label>Write about overview :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="overview" type="text" placeholder="Overview" value={overviews} onChange={(e)=>setoverviews(e.target.value)}/>
+                    <input
+                      id="overview"
+                      type="text"
+                      placeholder="Overview"
+                      value={overviews}
+                      onChange={(e) => setoverviews(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -160,7 +196,7 @@ function Blog_add() {
                       type="text"
                       placeholder="Author name"
                       value={f_author}
-                      onChange={(e)=>setf_author(e.target.value)}
+                      onChange={(e) => setf_author(e.target.value)}
                     />
                   </td>
                 </tr>
@@ -169,7 +205,13 @@ function Blog_add() {
                     <label>Address :</label>
                   </th>
                   <td className="fs-3 p-4">
-                    <input id="address" type="text" placeholder="Address" value={address} onChange={(e)=>setaddress(e.target.value)}/>
+                    <input
+                      id="address"
+                      type="text"
+                      placeholder="Address"
+                      value={address}
+                      onChange={(e) => setaddress(e.target.value)}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -182,7 +224,7 @@ function Blog_add() {
                       type="text"
                       placeholder="Father name"
                       value={father}
-                      onChange={(e)=>setfather(e.target.value)}
+                      onChange={(e) => setfather(e.target.value)}
                     />
                   </td>
                 </tr>
@@ -195,7 +237,7 @@ function Blog_add() {
                       id="Mother_name"
                       type="text"
                       placeholder="Mother name"
-                      onChange={(e)=>setmother(e.target.value)}
+                      onChange={(e) => setmother(e.target.value)}
                     />
                   </td>
                 </tr>
