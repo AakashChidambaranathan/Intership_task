@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json);
 
 app.get("/", (req, res) => {
-  res.send("this worink");
+  res.send("this wink");
 });
 
 app.post("/write", (req, res) => {

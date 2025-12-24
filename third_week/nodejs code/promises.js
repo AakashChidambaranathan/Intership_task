@@ -1,7 +1,6 @@
 const express=require('express');
 const cors=require('cors')
 const fs=require('fs');
-const { json } = require('body-parser');
 const app=express();
 app.use(cors());
 app.use(express.json())
@@ -13,7 +12,7 @@ app.post('/user',async(req,res)=>{
         const {name,email}=req.body;
         if(!name||!email){
             return res.status(400).send("this have error")
-        } 
+        }
         const data=await fs.readFile("users.json","utf-8")
         const users=JSON.parse(data)
         const newUser={
