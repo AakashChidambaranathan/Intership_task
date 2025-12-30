@@ -13,4 +13,4 @@ const labels={
     Drive_link:"Drive Link :",
     password:"Password :"
 }
-export default labels
+export default labels 

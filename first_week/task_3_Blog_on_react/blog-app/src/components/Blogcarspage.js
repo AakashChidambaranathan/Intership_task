@@ -40,5 +40,4 @@ function Blogcarspage() {
     </>
   );
 }
-
 export default Blogcarspage;

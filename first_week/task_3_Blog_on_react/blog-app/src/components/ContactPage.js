@@ -6,14 +6,12 @@ function ContactPage() {
   const [Account, setAccount] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
-
   const validate = () => {
     let newErrors = {};
     if (!Account.trim()) newErrors.Account = "fill this";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 

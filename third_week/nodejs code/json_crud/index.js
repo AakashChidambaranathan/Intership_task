@@ -13,7 +13,4 @@ const read=()=>{
     })
 }
 
-const write=()=>{
-    
-    fs.writeFileSync('data.txt',)
-}
+console.log(read(data))

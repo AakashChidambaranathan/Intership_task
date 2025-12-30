@@ -2,6 +2,8 @@ import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
 import { useState, useEffect } from "react";
 import { useRef } from "react";
+import labels from "./lables";
+import { useNavigate } from "react-router-dom";
 function Blog_add() {
   const [name, setName] = useState("");
   const [lastname, setlastname] = useState("");
@@ -17,57 +19,44 @@ function Blog_add() {
   const [successOpen, setSuccessOpen] = useState(false);
   const [center, setCenter] = useState(false);
 
+  const navigate = useNavigate();
+
   const scrollRef = useRef(null);
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-
     let lastScrollTop = el.scrollTop;
-
     const handleScroll = () => {
       const current = el.scrollTop;
-
       if (current < lastScrollTop) {
         setCenter(true);
       } else {
         setCenter(false);
       }
-
       lastScrollTop = current;
     };
-
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
-
   const validate = () => {
     let newErrors = {};
     if (!name.trim()) newErrors.name = "fill this";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!validate()) return;
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
     const response = await fetch("http://localhost:5000/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        title,
-        overviews,
-        f_author,
-        address,
-        father,
-        mother,
-      }),
+      body: JSON.stringify(data),
     });
-    const data = await response.json();
+    const result = await response.json();
     if (response.ok) {
       console.log("save form add_blog_file");
       setSuccessOpen(true);
@@ -75,20 +64,6 @@ function Blog_add() {
       console.error("Failed to save data");
     }
   };
-  localStorage.setItem(
-    "Blogdata",
-    JSON.stringify({
-      name: name,
-      last_name: document.getElementById("last_name")?.value || "",
-      email: document.getElementById("email")?.value || "",
-      Titel_blog: document.getElementById("title")?.value || "",
-      phone: document.getElementById("phone")?.value || "",
-      fav_author: document.getElementById("fav_author")?.value || "",
-      address: document.getElementById("address")?.value || "",
-      father_name: document.getElementById("Father name")?.value || "",
-      mother_name: document.getElementById("Mother_name")?.value || "",
-    })
-  );
   return (
     <>
       <div
@@ -102,11 +77,12 @@ function Blog_add() {
               <tbody>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your name* :</label>
+                    <label>{labels.name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="name"
+                      name={labels.name}
                       type="text"
                       placeholder="First Name"
                       value={name}
@@ -117,11 +93,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your last :</label>
+                    <label>{labels.last_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="last_name"
+                      name={labels.last_name}
                       type="text"
                       placeholder="Last Name"
                       value={lastname}
@@ -131,11 +108,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label htmlFor="email">Email :</label>
+                    <label htmlFor="email">{labels.email}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="email"
+                      name={labels.email}
                       type="email"
                       placeholder="Email"
                       value={email}
@@ -145,11 +123,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Title of blog :</label>
+                    <label>{labels.Titel_blog}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="title"
+                      name={labels.Titel_blog}
                       type="text"
                       placeholder="Title"
                       value={title}
@@ -159,11 +138,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Enter your phone no :</label>
+                    <label>{labels.phone}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="phone"
+                      name={labels.phone}
                       type="text"
                       placeholder="Phone no"
                       maxLength={"10"}
@@ -174,11 +154,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Write about overview :</label>
+                    <label>{labels.about}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="overview"
+                      name={labels.about}
                       type="text"
                       placeholder="Overview"
                       value={overviews}
@@ -188,11 +169,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Favorite author :</label>
+                    <label>{labels.fav_author}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="fav_author"
+                      name={labels.fav_author}
                       type="text"
                       placeholder="Author name"
                       value={f_author}
@@ -202,11 +184,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Address :</label>
+                    <label>{labels.address}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="address"
+                      name={labels.address}
                       type="text"
                       placeholder="Address"
                       value={address}
@@ -216,11 +199,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Father name :</label>
+                    <label>{labels.father_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="Father name"
+                      name={labels.father_name}
                       type="text"
                       placeholder="Father name"
                       value={father}
@@ -230,11 +214,12 @@ function Blog_add() {
                 </tr>
                 <tr>
                   <th className="fs-3 p-4 text-end">
-                    <label>Mother name :</label>
+                    <label>{labels.mother_name}</label>
                   </th>
                   <td className="fs-3 p-4">
                     <input
                       id="Mother_name"
+                      name={labels.mother_name}
                       type="text"
                       placeholder="Mother name"
                       onChange={(e) => setmother(e.target.value)}
@@ -289,9 +274,7 @@ function Blog_add() {
               <span className="fw-bold">Success</span>
               <span
                 style={{ cursor: "pointer", fontSize: "22px" }}
-                onClick={() => {
-                  window.location.reload();
-                }}
+                onClick={close}
               >
                 ×
               </span>
@@ -303,10 +286,11 @@ function Blog_add() {
               <button
                 className="btn btn-primary"
                 onClick={() => {
-                  window.location.reload();
+                  close();
+                  navigate("/");
                 }}
               >
-                Close
+                Submit
               </button>
             </div>
           </div>

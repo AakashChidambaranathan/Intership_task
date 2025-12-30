@@ -7,22 +7,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 5000;
-
 app.post("/submit", (req, res) => {
-  const { name, email, phone, title, overviews, f_author, address, father, mother } = req.body;
-  if (!name) {
-    return res.status(400).json({ message: "Name required" });
-  }
-  const userData = { name, email, phone, title, overviews, f_author, address, father, mother };
-  const filePath = path.join(__dirname, `${name}.json`);
-  fs.writeFile(filePath, JSON.stringify(userData, null, 2), (err) => {
+  const filePath = path.join(__dirname,"data",`${Object.values(req.body)[0]}.json`);
+  fs.writeFile(filePath, JSON.stringify(req.body, null, 5), (err) => {
     if (err) {
-      return res.status(500).json({ message: "Error saving file" });
+      return res.status(500).json({ message:"error on saving"});
     }
-    res.json({ message: "Data saved successfully" });
+    res.json({ message:"data done"});
   });
 });
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:5000`);
+console.log("this is nodemon")
+app.listen(5000, () => {
+  console.log(`server at http://localhost:5000`);
 });

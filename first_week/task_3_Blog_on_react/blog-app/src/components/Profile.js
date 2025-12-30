@@ -1,33 +1,48 @@
 import Fooder from "./Fooder";
 import * as XLSX from "xlsx";
+import { path } from "framer-motion/client";
 import labels from "./lables";
 function Profile() {
-  const data = JSON.parse(localStorage.getItem("blogAndprofileData"));
+  const paths=path.join(__dirname,"data")
+  const data = JSON.parse(paths.getItem("blogAndprofileData"));
   console.log(data);
 
-  const downloadExcel = () => {
-    const excelData = [
+  const textDs = () => {
+    const textData = [
       {
         [labels.name]: data.name,
         [labels.last_name]: data.last_name,
         [labels.email]: data.email,
-        [labels.Titel_blog]: data.Titel_blog,
-        [labels.phone]: data.phone,
-        [labels.father_name]: data.fav_author,
-        [labels.address]: data.address,
-        [labels.father_name]: data.father_name,
+        [labels.phone]: data.Titel_blog,
+        [labels.father_name]: data.Titel_blog,
         [labels.mother_name]: data.mother_name,
-        [labels.Accountno]: data.account,
-        [labels.Drive_link]: data.drivelink,
-        [labels.password]: data.password,
+        [labels.drivelink]: data.drivelink,
+        [labels.account]: data.account,
       },
     ];
-    const worksheet = XLSX.utils.json_to_sheet(excelData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Profile Data");
-    const safeName = data.name.replace(/\s+/g, "_");
-    XLSX.writeFile(workbook, `${safeName}.xlsx`);
   };
+
+  const workconst = Text.password((err)=>{
+    if(err){
+      console.log("this error");
+    }
+    console.log("this working")
+    const send(()=>{
+      data:data=[
+        {[labels.name]:name},
+        {[labels.last_name]:last_name},
+        {[labels.phone]:phone}],
+        {[labels.Accountno]:account},
+        {[labels.father_name]:father_name},
+        {[labels.mother_name]:mother_name},
+        {[labels.email]:email}},
+    })
+  }
+  const worktext = Text.utils.JSON_to_Text(textDs);
+  const worktex = Text.utils.book_new();
+  Text.utils.book_append_sheet(worktext, worktex, "textprofile data");
+  const safenamee = data.name.replace(/\s+/g, "_");
+  Text.eriteFile(worktext, `${safenamee}.text`);
   return (
     <>
       <div className="container my-5">
@@ -99,7 +114,7 @@ function Profile() {
           <div className="col-md-4 d-flex justify-content-center align-items-Start">
             <button
               className="btn btn-success btn-lg px-5 mt-4"
-              onClick={downloadExcel}
+              onClick={textDs}
             >
               Download Excel
             </button>
