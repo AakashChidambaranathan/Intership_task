@@ -49,7 +49,7 @@ function Blog_add() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (validate()) {
+    if(validate()) {
       const formDate = {
         name,
         lastname,
@@ -63,21 +63,21 @@ function Blog_add() {
         mother,
         date
       };
-      try {
+      try{
         const response = await fetch("http://localhost:5000/save-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userid: name, data: formDate }),
         });
 
-        if (response.ok) {
+        if(response.ok) {
           localStorage.setItem("userid", name);
 
           setSuccessOpen(true);
-        } else {
+        }else {
           console.error("Failed to save data");
         }
-      } catch (error) {
+      }catch (error) {
         console.error("Error:", error);
       }
     }

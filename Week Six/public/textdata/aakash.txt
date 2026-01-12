@@ -1,6 +1,6 @@
-User ID : aakash
-name : aakash
-lastname : 
+User ID : AAKASH
+name : AAKASH
+lastname : AAKA
 email : 
 title : 
 phone : 
@@ -9,4 +9,4 @@ f_author :
 address : 
 father : 
 mother : 
-date : 
+date : 2026-01-22
