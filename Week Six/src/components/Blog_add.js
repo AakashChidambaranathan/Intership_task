@@ -1,9 +1,9 @@
 import Fooder from "./Fooder";
 import Popup from "reactjs-popup";
 import { useState, useEffect, useRef } from "react";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import labels from "./lables";
-
+import bg from "../assets/image.png"
 function Blog_add() {
   const [name, setName] = useState("");
   const [lastname, setlastname] = useState("");
@@ -15,29 +15,11 @@ function Blog_add() {
   const [address, setaddress] = useState("");
   const [father, setfather] = useState("");
   const [mother, setmother] = useState("");
-  const [date,setData]=useState("");
+  const [date, setData] = useState("");
   const [errors, setErrors] = useState({});
   const [successOpen, setSuccessOpen] = useState(false);
-  const [center, setCenter] = useState(false);
   const navigate = useNavigate();
   const scrollRef = useRef(null);
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let lastScrollTop = el.scrollTop;
-    const handleScroll = () => {
-      const current = el.scrollTop;
-      if (current < lastScrollTop) {
-        setCenter(true);
-      } else {
-        setCenter(false);
-      }
-      lastScrollTop = current;
-    };
-
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const validate = () => {
     let newErrors = {};
@@ -49,7 +31,7 @@ function Blog_add() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(validate()) {
+    if (validate()) {
       const formDate = {
         name,
         lastname,
@@ -61,263 +43,200 @@ function Blog_add() {
         address,
         father,
         mother,
-        date
+        date,
       };
-      try{
+
+      try {
         const response = await fetch("http://localhost:5000/save-user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userid: name, data: formDate }),
         });
 
-        if(response.ok) {
+        if (response.ok) {
           localStorage.setItem("userid", name);
-
           setSuccessOpen(true);
-        }else {
+        } else {
           console.error("Failed to save data");
         }
-      }catch (error) {
+      } catch (error) {
         console.error("Error:", error);
       }
     }
   };
   return (
     <>
-      <div
-        ref={scrollRef}
-        className="overflow-auto"
-        style={{ maxHeight: "76vh" }}
-      >
-        <form onSubmit={handleSubmit} className="container">
-          <div className="row">
-            <div className="col-md-6 offset-md-3">
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.name}</label>
+      <form onSubmit={handleSubmit} className="p-4">
+        <div style={{ maxHeight: "78vh" }}>
+          <div className="row g-3 bg-black">
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="First Name"
                   value={name}
+                  placeholder="First Name"
                   onChange={(e) => setName(e.target.value)}
                 />
+                <label>First Name</label>
                 {errors.name && (
-                  <div className="text-danger small">{errors.name}</div>
-                )}  
-                {name && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_name} {name} 
-                    </h5>
-                  </div>
+                  <small className="text-danger">{errors.name}</small>
                 )}
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.last_name}</label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Last Name"
                   value={lastname}
+                  placeholder="Last Name"
                   onChange={(e) => setlastname(e.target.value)}
                 />
-                {lastname && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_last_name} {lastname}
-                    </h5>
-                  </div>
-                )}
+                <label>Last Name</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.email}</label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="email"
                   className="form-control"
-                  placeholder="Email"
                   value={email}
+                  placeholder="Email"
                   onChange={(e) => setemail(e.target.value)}
                 />
-                {email && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_email} {email}
-                    </h5>
-                  </div>
-                )}
+                <label>Email</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  {labels.Titel_blog}
-                </label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Title"
                   value={title}
+                  placeholder="Title"
                   onChange={(e) => settitle(e.target.value)}
                 />
-                {title && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_blog_titel} {title}
-                    </h5>
-                  </div>
-                )}
+                <label>Blog Title</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.phone}</label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Phone no"
-                  maxLength="10"
                   value={phone}
+                  maxLength={10}
+                  placeholder="Phone"
                   onChange={(e) => setphone(e.target.value)}
                 />
-                {phone && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_phone} {phone}
-                    </h5>
-                  </div>
-                )}
+                <label>Phone</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.about}</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Overview"
-                  value={overviews}
-                  onChange={(e) => setoverviews(e.target.value)}
-                />
-                {overviews && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_about} {overviews}
-                    </h5>
-                  </div>
-                )}
-              </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  {labels.Date_d}
-                </label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="date"
                   className="form-control"
-                  placeholder="Date"
                   value={date}
                   onChange={(e) => setData(e.target.value)}
                 />
-                {date && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.Your_data} {date}
-                    </h5>
-                  </div>
-                )}
+                <label>Date</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  {labels.fav_author}
-                </label>
+            </div>
+
+            <div className="col-12">
+              <div className="form-floating">
+                <textarea
+                  className="form-control"
+                  value={overviews}
+                  placeholder="Overview"
+                  style={{ height: "120px" }}
+                  onChange={(e) => setoverviews(e.target.value)}
+                />
+                <label>Overview</label>
+              </div>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Author name"
                   value={f_author}
+                  placeholder="Author"
                   onChange={(e) => setf_author(e.target.value)}
                 />
-                {f_author && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_fav_author} {f_author}
-                    </h5>
-                  </div>
-                )}
+                <label>Favorite Author</label>
               </div>
+            </div>
 
-              <div className="mb-3">
-                <label className="form-label fw-bold">{labels.address}</label>
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Address"
                   value={address}
+                  placeholder="Address"
                   onChange={(e) => setaddress(e.target.value)}
                 />
-                {address && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_address} {address}
-                    </h5>
-                  </div>
-                )}
+                <label>Address</label>
               </div>
+            </div>
 
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  {labels.father_name}
-                </label>
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Father name"
                   value={father}
+                  placeholder="Father"
                   onChange={(e) => setfather(e.target.value)}
                 />
-                {father && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_father_name} {father}
-                    </h5>
-                  </div>
-                )}
+                <label>Father Name</label>
               </div>
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  {labels.mother_name}
-                </label>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-floating">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Mother name"
                   value={mother}
+                  placeholder="Mother"
                   onChange={(e) => setmother(e.target.value)}
                 />
-                {mother && (
-                  <div className="mt-2 text-start">
-                    <h5 className="text-primary">
-                      {labels.your_mother_name} {mother}
-                    </h5>
-                  </div>
-                )}
-              </div>
-              <div className="text-center mt-4">
-                <button type="submit" className="btn btn-primary btn-sm">
-                  Submit
-                </button>
+                <label>Mother Name</label>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+
+          <div className="text-center mt-4">
+            <button type="submit" className="btn btn-md btn-primary px-5">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+
       <Popup
         open={successOpen}
         closeOnDocumentClick={false}
-        overlayStyle={{ background: "rgba(0,0,0,0.3)" }}
+        overlayStyle={{ background: "rgba(0,0,0,0.34)" }}
         contentStyle={{
           position: "fixed",
           top: "200px",
           left: "50%",
           transform: "translateX(-50%)",
           width: "500px",
-          maxWidth: "90vw",
-          padding: "0",
           borderRadius: "10px",
-          background: "#fcfcfcff",
+          background: "#fff",
+          padding: 0,
         }}
       >
         <div className="text-center">
@@ -337,9 +256,11 @@ function Blog_add() {
               x
             </span>
           </div>
+
           <div className="p-4">
-            <p className="mb-0 fs-5" >Blog added</p>
+            <p className="mb-0 fs-5">Blog added successfully!</p>
           </div>
+
           <div className="border-top p-3 text-end">
             <button
               className="btn btn-primary"
@@ -349,7 +270,7 @@ function Blog_add() {
                 navigate("/profile/" + userid);
               }}
             >
-              Go to Profile
+              Go to Profile Page
             </button>
           </div>
         </div>
@@ -357,6 +278,7 @@ function Blog_add() {
       <Fooder />
     </>
   );
+
 }
 
 export default Blog_add;

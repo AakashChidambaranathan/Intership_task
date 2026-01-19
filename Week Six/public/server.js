@@ -50,11 +50,9 @@ app.get("/get-user/:userid", (req, res) => {
 app.get("/get-text/:userid", (req, res) => {
   const { userid } = req.params;
   const filePath = path.join(text_dir, `${userid}.txt`);
-
   if (!fs.existsSync(filePath)) {
     return res.status(404).json({ message: "Text file not found" });
   }
-
   res.sendFile(filePath);
 });
 

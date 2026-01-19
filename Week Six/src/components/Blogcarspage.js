@@ -29,7 +29,7 @@ const Blogs = [
 function Blogcarspage() {
   return (
     <>
-      <div className="overflow-auto" style={{ maxHeight: "74vh" }}>
+      <div className="overflow-auto" style={{ maxHeight: "85vh" }}>
         {Blogs.map((blog) => (
           <div key={blog.id}>
             <Blogcard title={blog.title} text={blog.text} />

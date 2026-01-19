@@ -32,3 +32,9 @@ Change everything in dynamic on ui✅
 
 18/12/2025
 store a data on json file on public folder ✅
+middlewere
+is 
+
+7/01/2026
+update ui 
+fetch data from add_blog to profile page

@@ -48,7 +48,7 @@ function Profile() {
           <div className="col-md-6 offset-md-3">
             <div className="card shadow">
               <div
-                className="card-body overflow-auto"
+                className="card-body overflow-auto alert-dismissible"
                 style={{ maxHeight: "60vh" }}
               >
                 <div className="mb-3">
@@ -126,6 +126,7 @@ function Profile() {
                       </a>
                     </div>
                   </div>
+
                 )}
               </div>
               <div className="card-footer text-center">
