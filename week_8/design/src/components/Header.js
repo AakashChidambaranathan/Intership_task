@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "../assets/b694d70d154ddd4494dfcb49da5702f9.jpg";
+import Logo from "../assets/522dad9e4cb3814a0ea0c355a01d9369.jpg";
 
 function Header() {
   const location = useLocation();
@@ -8,14 +8,14 @@ function Header() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="d-flex align-items-center justify-content-between p-3 border-bottom">
+    <div className="d-flex align-items-center justify-content-between border-bottom">
       <div>
         <img
           src={Logo}
           alt="Logo"
           style={{
-            height: "20px",
-            width: "65px",
+            height: "50px",
+            width: "70px",
             borderRadius: "6px",
           }}
         />
@@ -37,9 +37,9 @@ function Header() {
               Home
             </Link>
           </li>
-          <li className="nav-item mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Create New Blog">
+          <li className="nav-item mx-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Application">
             <Link
-              to="/AddBlog"
+              to="/Application"
               className={`nav-link ${isActive("/AddBlog") ? "text-success fw-bold border-bottom border-2 border-success" : "text-dark"}`}
             >
               <i className="bi bi-plus-circle me-1"></i>

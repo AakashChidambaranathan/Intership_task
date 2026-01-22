@@ -1017,3 +1017,41 @@ function JobApplication() {
 }
 
 export default JobApplication;
+
+<div className="mb-3 d-flex align-items-center">
+  <label className="form-label fw-medium me-3 mb-0" style={{ width: "150px" }}>
+    Full Name *
+  </label>
+
+  <div className="flex-grow-1">
+    <input
+      type="text"
+      name="full_name"
+      className={`form-control ${errors.full_name ? "is-invalid" : ""}`}
+      value={formData.full_name}
+      onChange={handleChange}
+    />
+
+    {errors.full_name && (
+      <div className="invalid-feedback d-block">{errors.full_name}</div>
+    )}
+  </div>
+</div>;
+
+<div className="mb-3 row align-items-center">
+  <label className="col-sm-4 col-form-label fw-medium">Gender</label>
+  <div className="col-sm-8">
+    <select
+      name="gender"
+      className="form-select"
+      value={formData.gender}
+      onChange={handleChange}
+    >
+      <option value="">Select Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+      <option>Prefer not to say</option>
+    </select>
+  </div>
+</div>;

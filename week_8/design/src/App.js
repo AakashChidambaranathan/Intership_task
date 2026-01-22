@@ -12,7 +12,7 @@ function App(){
         <Routes>
           <Route path="/" element={<Blogcarspage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/AddBlog" element={<Blog_add/>} />
+          <Route path="/Application" element={<Blog_add/>} />
           <Route path="/profile/:userid" element={<Profile />} />
         </Routes>
       </Router>
