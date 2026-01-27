@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Profile from './components/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog_add from './components/JobApplication'
+import { SpeedInsights } from '@vercel/speed-insights/react';
+
 function App(){
   return (
     <>
@@ -16,6 +18,7 @@ function App(){
           <Route path = "/profile/:userid" element={<Profile />} />
         </Routes>
       </Router>
+      <SpeedInsights />
     </>
   );
 }
