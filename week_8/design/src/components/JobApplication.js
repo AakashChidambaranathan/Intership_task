@@ -23,21 +23,28 @@ function JobApplication() {
     const { name, value } = e.target;
     setFormData((p) => ({ ...p, [name]: value }));
   };
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData((p) => ({ ...p, resume_name: file.name }));
-    }
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  await fetch("http://localhost:5000/save", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  alert("Application submitted successfully");
+};
+
   return (
-    <div className="min-vh-90 d-flex flex-column">
+    <div className="justify-content-center flex-wrap">
       <div
         className="flex-grow-1 py-5"
         style={{
           background: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${bg})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100vh",
+          height: "87vh",
           overflowY: "scroll",
         }}
       >
@@ -45,7 +52,7 @@ function JobApplication() {
           <div className="row justify-content-center">
             <div className="col-lg-7 col-md-10">
               <div className="card shadow-lg border-0 rounded-4">
-                <div className="card-body p-4 p-md-5">
+                <div className="card  -body p-4 p-md-5">
                   <h4 className="fw-bold text-center text-primary mb-1">
                     Job Application
                   </h4>
@@ -68,7 +75,8 @@ function JobApplication() {
                       <input
                         type="email"
                         name="email"
-                        className="form-control"                        value={formData.email}
+                        className="form-control"
+                        value={formData.email}
                         onChange={handleChange}
                       />
                     </div>
@@ -166,7 +174,6 @@ function JobApplication() {
                       type="url"
                       name="linkedin_profile"
                       className="form-control"
-                      onChange={handleChange}
                     />
                   </div>
                   <div className="mb-4">
@@ -175,7 +182,6 @@ function JobApplication() {
                       type="file"
                       className="form-control"
                       accept=".pdf"
-                      onChange={handleFileChange}
                     />
                     {formData.resume_name && (
                       <small className="text-success">
@@ -184,7 +190,7 @@ function JobApplication() {
                     )}
                   </div>
                   <div className="text-center">
-                    <button className="btn btn-primary btn-sm shadow">
+                    <button className="btn btn-primary btn-sm shadow" onChange={handleSubmit}>
                       Submit Application
                     </button>
                   </div>

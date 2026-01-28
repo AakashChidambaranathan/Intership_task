@@ -1015,7 +1015,6 @@ function JobApplication() {
     </div>
   );
 }
-
 export default JobApplication;
 
 <div className="mb-3 d-flex align-items-center">
@@ -1055,3 +1054,43 @@ export default JobApplication;
     </select>
   </div>
 </div>;
+
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
+const console = require("console");
+const app = express();
+app.use(cors());
+app.use(express.json());
+const JSON_FILE = "data.json";
+const TEXT_FILE = "pipeline.txt";
+app.post("/save", (req, res) => {
+  const formData = req.body;
+  let data = [];
+  if (fs.existsSync(JSON_FILE)) {
+    data = JSON.parse(fs.readFileSync(JSON_FILE));
+  }
+  data.push(formData);
+  fs.writeFileSync(JSON_FILE, JSON.stringify(data, null, 2));
+  const textData = `
+Name: ${formData.full_name}
+Email: ${formData.email}
+Role: ${formData.role}
+Skills: ${formData.key_skills}
+----------------------------------
+`;
+  console.log("hi");
+  fs.appendFileSync(TEXT_FILE, textData);
+  res.json({ message: "Data saved successfully" });
+});
+app.get("/profiles", (req, res) => {
+  if (!fs.existsSync(JSON_FILE)) {
+    return res.json([]);
+  }
+  const data = JSON.parse(fs.readFileSync(JSON_FILE));
+  res.json(data);
+});
+app.listen(5000,()=>{
+  console.log("Server running on http://localhost:5000");
+})
+app._router()

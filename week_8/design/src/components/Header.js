@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import Logo from "../assets/a381727443af79d5a10e0323c4754dd2.jpg";
+import Logo from "../assets/2a3f4ee38c71063942ffa57bf3ce9cf2.jpg";
 
 function Header() {
   const location = useLocation();
@@ -12,7 +12,7 @@ function Header() {
           <img
             src={Logo}
             alt="Logo"
-            style={{ height: "40px", width: "60px", borderRadius: "6px" }}
+            style={{ height: "7vh", width: "20vn", borderRadius: "6px" }}
           />
         </Link>
         <ul className="nav justify-content-center flex-wrap">

@@ -1,61 +1,43 @@
-const fs = require("fs");
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
+const express =require("express")
+const fs=require("fs")
+const cors=require("cors")
+const console =require("console");
+const { threadId } = require("worker_threads");
+const { inertia } = require("framer-motion");
+const { addAbortListener } = require("events");
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const app=express();
+app.use(cors())
+app.use(express.json)
+const JSON_FILE="data.json"
+const TEXT_FILE="pipeline.txt"
 
-const data_dir = path.join(__dirname, "data");
-const text_dir = path.join(__dirname, "textdata");
-
-if (!fs.existsSync(data_dir)) {
-  fs.mkdirSync(data_dir, { recursive: true });
-}
-
-if (!fs.existsSync(text_dir)) {
-  fs.mkdirSync(text_dir, { recursive: true });
-}
-
-app.post("/save-user", (req, res) => {
-  const { userid, data } = req.body;
-
-  const jsonPath = path.join(data_dir, `${userid}.json`);
-  fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2));
-
-  let textContent = `User ID : ${userid}\n`;
-  for (let key in data) {
-    textContent += `${key} : ${data[key]}\n`;
+app.post("/save",(req,res)=>{
+  const formData=req.body;
+  let data=[];
+  if(fs.existsSync(JSON_FILE)){
+    data=JSON.parse(fs.readFileSync(JSON_FILE))
   }
-
-  const txtPath = path.join(text_dir, `${userid}.txt`);
-  fs.writeFileSync(txtPath, textContent);
-
-  res.json({ message: "User data saved successfully" });
-});
-
-app.get("/get-user/:userid", (req, res) => {
-  const { userid } = req.params;
-  const filePath = path.join(data_dir, `${userid}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ message: "User not found" });
+  data.push(formData);
+  fs.writeFileSync(JSON_FILE,JSON.stringify(data,null,2))
+  const textData=`Name:${formData.fill_name}
+  Emile:${formData.Emile}
+  Role:${formData.Role}
+  Skills:${formData.key_skill}`
+  fs.appendFileSync(TEXT_FILE, textData);
+  res.json({message:"Data saved successfully"})
+})
+app.get("/Profiles",(res,req)=>{
+  if(!fs.existsSync(JSON_FILE)){
+    return res.json([])
   }
+  const data=JSON.parse(fs.readFileSync(JSON_FILE));
+  res.send(data)
+})
 
-  const fileData = fs.readFileSync(filePath, "utf-8");
-  res.json(JSON.parse(fileData));
-});
-
-app.get("/get-text/:userid", (req, res) => {
-  const { userid } = req.params;
-  const filePath = path.join(text_dir, `${userid}.txt`);
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ message: "Text file not found" });
-  }
-  res.sendFile(filePath);
-});
-
-app.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
-});
+app.apply(addAbortListener("/Profile",(req,res)=>{
+  app.put(!fs/)
+}))
+app.listen(5000,()=>{
+  console.log("Server running on http://localhost:5000")
+})

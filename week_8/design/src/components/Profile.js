@@ -1,173 +1,35 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Fooder from "./Fooder";
-import labels from "./lables";
-import bg from "../assets/3654638c52703b7134206b44ac72a5aa.jpg"
+
 function Profile() {
-  const { userid } = useParams();
-  const [data, setData] = useState(null);
-  const [error, setError] = useState("");
+  const [profiles, setProfiles] = useState([]);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/get-user/${userid}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("User not found");
-        return res.json();
-      })
-      .then((result) => setData(result))
-      .catch(() => setError("No data found"));
-  }, [userid]);
-  const downloadTextFile = () => {
-    if (!data) return;
-    const content = `
-    ${labels.name}: ${data.name}
-    ${labels.last_name}: ${data.lastname}
-    ${labels.email}: ${data.email}
-    ${labels.title}: ${data.title}
-    ${labels.phone}: ${data.phone}
-    ${labels.f_author}: ${data.f_author}
-    ${labels.address}: ${data.address}
-    ${labels.father}: ${data.father}
-    ${labels.mother_name} ${data.mother}`;
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${data.name}_profile.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-  if (error) return <h2 className="text-center">{error}</h2>;
-  if (!data) return <h2 className="text-center">Loading...</h2>;
+    fetch("http://localhost:5000/profiles")
+      .then((res) => res.json())
+      .then((data) => setProfiles(data));
+  }, []);
+
   return (
-    <><div
-  style={{
-    backgroundImage: `url(${bg})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    minHeight: "100vh",
-  }}
->
-    <h1 className="text-center">Profile Data</h1>
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-6 offset-md-3">
-            <div className="card shadow">
-              <div
-                className="card-body overflow-auto alert-dismissible"
-                style={{ maxHeight: "60vh" }}
-              >
-                <div className="mb-3">
-                  <label className="form-label fw-bold">{labels.name}</label>
-                  <div className="form-control fs-5">
-                    {data?.name ? data.name : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">
-                    {labels.last_name}
-                  </label>
-                  <div className="form-control fs-5">
-                    {data?.lastname ? data.lastname : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">{labels.email}</label>
-                  <div className="form-control fs-5">
-                    {data?.email ? data.email : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">
-                    {labels.Titel_blog}
-                  </label>
-                  <div className="form-control fs-5">
-                    {data?.title ? data.title : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">{labels.phone}</label>
-                  <div className="form-control fs-5">
-                    {data?.email ? data.email : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">
-                    {labels.fav_author}
-                  </label>
-                  <div className="form-control fs-5">
-                    {data?.f_author ? data.f_author : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">{labels.address}</label>
-                  <div className="form-control fs-5">
-                    {data?.address ? data.address : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">{labels.Date_d}</label>
-                  <div className="form-control fs-5">
-                    {data?.date ? data.date : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">
-                    {labels.father_name}
-                  </label>
-                  <div className="form-control fs-5">
-                    {data?.father ? data.father : "-"}
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label className="form-label fw-bold">
-                    {labels.mother_name}
-                  </label>
-                  <div className="form-control fs-5">
-                    {data?.mother ? data.mother : "-"}
-                  </div>
-                </div>
-                {data.account && (
-                  <div className="mb-3">
-                    <label className="form-label fw-bold">
-                      {labels.Accountno}
-                    </label>
-                    <div className="form-control fs-5">
-                      {data?.account ? data.account : "-"}
-                    </div>
-                  </div>
-                )}
-                {data.drivelink && (
-                  <div className="mb-3">
-                    <label className="form-label fw-bold">
-                      {labels.Drive_link}
-                    </label>
-                    <div className="form-control fs-5">
-                      <a
-                        href={data.drivelink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {data.drivelink}
-                      </a>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="card-footer text-center">
-                <button
-                  className="btn btn-success btn-sm"
-                  onClick={downloadTextFile}
-                >
-                  Download Profile
-                </button>
-              </div>
-            </div>
-          </div>
+    <div className="container mt-5">
+      <h4 className="text-primary mb-3">Applicants Profile</h4>
+
+      {profiles.map((p, i) => (
+        <div key={i} className="card shadow p-3 mb-3">
+          <p>
+            <b>Name:</b> {p.full_name}
+          </p>
+          <p>
+            <b>Email:</b> {p.email}
+          </p>
+          <p>
+            <b>Role:</b> {p.role}
+          </p>
+          <p>
+            <b>Skills:</b> {p.key_skills}
+          </p>
         </div>
-      </div>
-      </div>
-      <Fooder />
-    </>
+      ))}
+    </div>
   );
 }
 
