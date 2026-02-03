@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
-import lb from "./Labels"
+import lb from "./Labels";
+
 function Profile() {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("http://localhost:5005/profile")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch profiles");
+        }
+        return res.json();
+      })
       .then((data) => {
+        console.log("PROFILE API DATA ", data);
         setProfiles(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        console.error("Error fetching profiles:", err);
+        setLoading(false);
+      });
   }, []);
+
   if (loading) {
     return (
       <div className="container mt-5 text-center">
@@ -19,22 +31,30 @@ function Profile() {
       </div>
     );
   }
+
   return (
     <div className="container mt-5">
       <h3 className="text-center text-primary mb-4">Job Applications</h3>
+
       {profiles.length === 0 && (
         <p className="text-center text-muted">No job applications found.</p>
       )}
+
       <div className="row">
         {profiles.map((p, index) => (
           <div key={index} className="col-lg-6 mb-4">
             <div className="card shadow border-0 rounded-3">
               <div className="card-body">
                 <h5 className="fw-bold text-primary mb-3">{p.full_name}</h5>
+
                 <table className="table table-sm table-borderless mb-0">
                   <tbody>
                     <tr>
                       <th>{lb.Name}</th>
+                      <td>{p.full_name}</td>
+                    </tr>
+                    <tr>
+                      <th>{lb.Email}</th>
                       <td>{p.email}</td>
                     </tr>
                     <tr>
@@ -79,4 +99,5 @@ function Profile() {
     </div>
   );
 }
+
 export default Profile;

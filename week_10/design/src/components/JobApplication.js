@@ -29,15 +29,23 @@ function JobApplication() {
     setFormData((p) => ({ ...p, [name]: value }));
   };
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
-    await fetch("http://localhost:5005/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    setSuccessOpen(true);
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5005/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setSuccessOpen(true);
+      } else {
+        console.error("Failed to submit application");
+      }
+    } catch (error) {
+      console.error("Error submitting application:", error);
+    }
   };
   return (
     <div className="justify-content-center flex-wrap">
@@ -114,8 +122,8 @@ function JobApplication() {
                           type="text"
                           name="city"
                           className="form-control"
-                          value = {formData.city}
-                          onChange = {handleChange}
+                          value={formData.city}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>

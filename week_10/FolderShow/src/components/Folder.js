@@ -32,7 +32,7 @@ if (explorer.isFolder) {
         <div style={{ display: expand ? "block" : "none", paddingLeft: 25 }}>
         {showInput.visible && (
             <div className="inputContainer">
-            <span>{showInput.isFolder ? "📁" : "📄"}</span>
+            <span>{showInput.isFolder?"📁":"📄"}</span>
             <input
                 type="text"
                 className="inputContainer__input"
@@ -55,7 +55,7 @@ if (explorer.isFolder) {
             );
         })}
         </div> 
-    </div>
+    </div> 
     );
 } else {
     return <span className="file">📄 {explorer.name}</span>;

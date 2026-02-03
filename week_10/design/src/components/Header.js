@@ -12,7 +12,7 @@ function Header() {
           <img
             src={Logo}
             alt="Logo"
-            style={{ height: "7vh", width: "13vh", borderRadius: "6px" }}
+            style={{ height: "7vh", width: "7vw", borderRadius: "6px" }}
           />
         </Link>
         <ul className="nav justify-content-center flex-wrap">
