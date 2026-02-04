@@ -5,6 +5,7 @@ import Logo from "../assets/2a3f4ee38c71063942ffa57bf3ce9cf2.jpg";
 function Header() {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
+
   return (
     <div className="border-bottom px-3 py-2">
       <div className="d-flex align-items-center justify-content-between flex-wrap">
@@ -15,6 +16,7 @@ function Header() {
             style={{ height: "7vh", width: "7vw", borderRadius: "6px" }}
           />
         </Link>
+
         <ul className="nav justify-content-center flex-wrap">
           <li className="nav-item mx-2">
             <Link
@@ -27,6 +29,7 @@ function Header() {
               Home
             </Link>
           </li>
+
           <li className="nav-item mx-2">
             <Link
               to="/Application"
@@ -38,6 +41,7 @@ function Header() {
               Application
             </Link>
           </li>
+
           <li className="nav-item mx-2">
             <Link
               to="/Profile"
@@ -49,11 +53,21 @@ function Header() {
               Profile
             </Link>
           </li>
+
+          <li className="nav-item mx-2">
+            <Link
+              to="/Dashboard"
+              className={`nav-link ${
+                isActive("/Dashboard") ? "text-warning fw-bold" : "text-dark"
+              }`}
+            >
+              <i className="bi bi-speedometer2 me-1"></i>
+              Dashboard
+            </Link>
+          </li>
         </ul>
-        <Link
-          to="/"
-          className="nav-link fw-bold d-flex align-items-center"
-        >
+
+        <Link to="/" className="nav-link fw-bold d-flex align-items-center">
           <i className="bi bi-box-arrow-left me-2"></i>
           Log out
         </Link>
@@ -61,4 +75,5 @@ function Header() {
     </div>
   );
 }
+
 export default Header;

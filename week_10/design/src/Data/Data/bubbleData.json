@@ -1,0 +1,13 @@
+[
+  {
+    "Name": "Aakash",
+    "Roll NO": "22ADL125",
+    "BubbleMarks": [
+      { "subject": "Tamil",    "x": 1, "y": 89, "r": 10 },
+      { "subject": "English",  "x": 2, "y": 85, "r": 9 },
+      { "subject": "Maths",    "x": 3, "y": 50, "r": 6 },
+      { "subject": "Computer","x": 4, "y": 30, "r": 5 },
+      { "subject": "Social",   "x": 5, "y": 90, "r": 10 }
+    ]
+  }
+]

@@ -1,52 +1,51 @@
 const express = require("express");
 const fs = require("fs");
-const cors = require("cors");
 const path = require("path");
-const { default: JobApplication } = require("../src/components/JobApplication");
+const cors = require("cors");
 const app = express();
-const PORT = 5005;
 app.use(cors());
 app.use(express.json());
-const jsonDir = path.join(__dirname, "JsonData");
-const pipelineDir = path.join(__dirname, "Pipeline");
-[jsonDir, pipelineDir].forEach((dir) => {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-});
-const safeFileName = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, "_");
+const JSON_FILE = path.join(__dirname, "applications.json");
+const TEXT_FILE = path.join(__dirname, "applications.txt");
+function readJSONFile() {
+  if (!fs.existsSync(JSON_FILE)) {
+    return [];
+  }
+  const data = fs.readFileSync(JSON_FILE, "utf-8");
+  return data ? JSON.parse(data) : [];
+}
+function writeJSONFile(data) {
+  fs.writeFileSync(JSON_FILE, JSON.stringify(data, null, 2));
+}
 app.post("/save", (req, res) => {
-  try {
-    const { full_name, email } = req.body;
-    if (!full_name || !email) {
-      return res.status(400).json({
-        error: "Full name and email are required",
-      });
-    }
-    const fileName = safeFileName(full_name);
-    const jsonPath = path.join(jsonDir, `${fileName}.json`);
-    const txtPath = path.join(pipelineDir, `${fileName}.txt`);
-    const data = { ...req.body };
-    fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2));
-    fs.appendFileSync(txtPath, Object.values(data).join("|") + "\n");
-    res.json({
-      message: "Job application saved successfully",
-      userId: fileName,
-    });
-  } catch (err) {
-    console.error("ERROR:", err);
-    res.status(500).json({ error: "Failed to save application" });
-  }
+  const application = req.body;
+  const applications = readJSONFile();
+  applications.push(application);
+
+  writeJSONFile(applications);
+  const textData = `
+-----------------------------
+Name: ${application.full_name}
+Email: ${application.email}
+DOB: ${application.date_of_birth}
+Gender: ${application.gender}
+City: ${application.city}
+Education: ${application.highest_education}
+University: ${application.university}
+Graduation Year: ${application.graduation_year}
+Role: ${application.role}
+Skills: ${application.key_skills}
+LinkedIn: ${application.linkedin_profile}
+Resume: ${application.resume_name}
+-----------------------------
+`;
+  fs.appendFileSync(TEXT_FILE, textData);
+  res.status(200).json({ message: "Application saved successfully" });
 });
-app.post("/profile", (req, res) => {
-  try {
-    const files = fs.readdirSync(jsonDir);
-    const profiles = files
-      .filter((f) => f.endsWith(".json"))
-      .map((f) => JSON.parse(fs.readFileSync(path.join(jsonDir, f), "utf-8")));
-    res.json(profiles);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to read profiles" });
-  }
+app.get("/profile", (req, res) => {
+  const applications = readJSONFile();
+  res.json(applications);
 });
-app.listen(PORT, () =>
-  console.log(`Server running at http://localhost:${PORT}`),
-);
+app.listen(5005, () => {
+  console.log("Server running on http://localhost:5005");
+});

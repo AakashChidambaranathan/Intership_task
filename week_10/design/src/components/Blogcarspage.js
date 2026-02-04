@@ -36,7 +36,7 @@ function Blogcarspage() {
             That changes here
           </h2>
           x``
-          <p className="lead text-light mx-auto" style={{ maxWidth: "900px" }}>
+          <p className="lead text-light mx-auto" style={{ maxWidth: "100vh" }}>
             Find the right job faster with our smart job search platform. We
             connect talented professionals with trusted employers using
             intelligent matching, real-time job updates, and a seamless

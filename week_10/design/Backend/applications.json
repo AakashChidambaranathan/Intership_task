@@ -1,0 +1,34 @@
+[
+  {
+    "full_name": "Aakash",
+    "email": "caakashct@gmail.com",
+    "date_of_birth": "2026-02-18",
+    "gender": "Male",
+    "nationality": "",
+    "city": "Naga",
+    "country": "India",
+    "highest_education": "dvf",
+    "university": "kongu",
+    "graduation_year": "2026-02-17",
+    "role": "Frontend Developer",
+    "key_skills": "java,react",
+    "linkedin_profile": "https://kongu",
+    "resume_name": ""
+  },
+  {
+    "full_name": "vijay",
+    "email": "caakashct@gmail.com",
+    "date_of_birth": "",
+    "gender": "",
+    "nationality": "",
+    "city": "",
+    "country": "India",
+    "highest_education": "",
+    "university": "",
+    "graduation_year": "",
+    "role": "",
+    "key_skills": "",
+    "linkedin_profile": "",
+    "resume_name": ""
+  }
+]
