@@ -54,12 +54,13 @@ function JobApplication() {
         style={{
           background: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url(${bg})`,
           backgroundSize: "cover",
-          height: "87vh",
-          overflowY: "scroll",
         }}
       >
         <div className="container">
-          <div className="row justify-content-center">
+          <div
+            className="row justify-content-center"
+            style={{ minHeight:"80vh", overflow: "auto"}}
+          >
             <div className="col-lg-7 col-md-10">
               <div className="card shadow-lg border-0 rounded-4">
                 <div className="card-body p-4 p-md-5">

@@ -1069,3 +1069,55 @@ app.listen(5000,()=>{
   console.log("Server running on http://localhost:5000");
 })
 app._router()
+
+
+
+
+
+import { Chart as ChartJS } from "chart.js";
+import {
+  BoxPlotController,
+  BoxAndWiskers,
+} from "chartjs-chart-box-and-violin-plot";
+import { Chart } from "react-chartjs-2";
+import { createBoxPlotData } from "../utils/boxPlot";
+
+ChartJS.register(BoxPlotController, BoxAndWiskers);
+
+const marks = [89, 85, 50, 30, 90];
+const boxData = createBoxPlotData(marks);
+
+export default function BoxPlot() {
+  return (
+    <Chart
+      type="boxplot"
+      data={{
+        labels: ["Student Marks"],
+        datasets: [
+          {
+            label: "Marks Distribution",
+            data: [boxData],
+            backgroundColor: "rgba(13,110,253,0.4)",
+            borderColor: "#0d6efd",
+            borderWidth: 2,
+          },
+        ],
+      }}
+      options={{
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "Marks",
+            },
+          },
+        },
+      }}
+    />
+  );
+}

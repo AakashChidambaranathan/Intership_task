@@ -5,6 +5,7 @@ import Profile from './components/Profile';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Blog_add from './components/JobApplication'
 import Dashboard from './components/Dashboard'
+import Userinput from './components/Userinput';
 function App(){
   return (
     <>
@@ -16,6 +17,7 @@ function App(){
           <Route path = "/Application" element={<Blog_add/>} />
           <Route path = "/profile/:userid" element={<Profile />} />
           <Route path= "/Dashboard" element={<Dashboard/>}/>
+          <Route path="/Userinput" element={<Userinput/>}/>
         </Routes>
       </Router>
     </>

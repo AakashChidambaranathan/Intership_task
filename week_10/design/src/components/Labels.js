@@ -3,7 +3,7 @@ const Lables={
   Name:"Full Name",
   Email:"Email",
   Phone_no:"Phone No",
-  Date_of_Birth:"Data of Birth",
+  Date_of_Birth:"Date of Birth",
   Gender:"Gender",
   City:"City",
   Higher_edu:"Higher Education",

@@ -65,6 +65,16 @@ function Header() {
               Dashboard
             </Link>
           </li>
+          <li className="nav-item mx-2">
+            <Link
+              to="/Userinput"
+              className={`nav-link ${
+                isActive("/Userinput") ? "text-warning fw-bold" : "text-dark"
+              }`}
+            >
+              <i class="bi bi-bar-chart"></i> Create chart
+            </Link>
+          </li>
         </ul>
 
         <Link to="/" className="nav-link fw-bold d-flex align-items-center">
