@@ -1,0 +1,66 @@
+{
+  "stats": {
+    "totalApplications": 45,
+    "shortlisted": 12,
+    "interviews": 7,
+    "rejected": 10
+  },
+  "skills": [
+    { "skill": "Java", "count": 15 },
+    { "skill": "React", "count": 12 },
+    { "skill": "Python", "count": 8 },
+    { "skill": "SQL", "count": 10 }
+  ],
+  "monthlyApplications": [
+    { "month": "Jan", "applications": 5 },
+    { "month": "Feb", "applications": 7 },
+    { "month": "Mar", "applications": 10 },
+    { "month": "Apr", "applications": 8 },
+    { "month": "May", "applications": 9 },
+    { "month": "Jun", "applications": 6 }
+  ],
+  "applications": [
+    {
+      "id": 1,
+      "company": "TCS",
+      "role": "Java Developer",
+      "location": "Chennai",
+      "status": "Shortlisted"
+    },
+    {
+      "id": 2,
+      "company": "Infosys",
+      "role": "React Developer",
+      "location": "Bangalore",
+      "status": "Interview"
+    },
+    {
+      "id": 3,
+      "company": "Wipro",
+      "role": "Backend Developer",
+      "location": "Hyderabad",
+      "status": "Rejected"
+    },
+    {
+      "id": 4,
+      "company": "Zoho",
+      "role": "Software Engineer",
+      "location": "Chennai",
+      "status": "Applied"
+    },
+    {
+      "id": 5,
+      "company": "ryzklytix",
+      "role": "Full Stack Developer",
+      "location": "Bangalore",
+      "status": "Applied"
+    },
+    {
+      "id":6,
+      "company":"Freshworks",
+      "role":"UI/UX",
+      "location":"Bangalore",
+      "status":"Applied"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "Name": "Aakash",
+    "Roll NO": "22ADL125",
+    "Marks": [
+      { "subject": "Tamil", "Mark": 89 },
+      { "subject": "Engilsh", "Mark": 85 },
+      { "subject": "Maths", "Mark": 50 },
+      { "subject": "Computer", "Mark": 30 },
+      { "subject": "Social", "Mark": 90 }
+    ]
+  }
+]

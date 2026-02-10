@@ -1,0 +1,60 @@
+
+-----------------------------
+Name: Aakash
+Email: caakashct@gmail.com
+DOB: 2026-02-18
+Gender: Male
+City: Naga
+Education: dvf
+University: kongu
+Graduation Year: 2026-02-17
+Role: Frontend Developer
+Skills: java,react
+LinkedIn: https://kongu
+Resume: 
+-----------------------------
+
+-----------------------------
+Name: vijay
+Email: caakashct@gmail.com
+DOB: 
+Gender: 
+City: 
+Education: 
+University: 
+Graduation Year: 
+Role: 
+Skills: 
+LinkedIn: 
+Resume: 
+-----------------------------
+
+-----------------------------
+Name: aakash-one.vercel.app
+Email: caakashct@gmail.com
+DOB: 2026-02-18
+Gender: 
+City: 
+Education: 
+University: 
+Graduation Year: 
+Role: 
+Skills: 
+LinkedIn: 
+Resume: 
+-----------------------------
+
+-----------------------------
+Name: Aakash
+Email: caakashct@gmail.com
+DOB: 2026-02-18
+Gender: Male
+City: Nagapattinam
+Education: 
+University: 
+Graduation Year: 2026
+Role: 
+Skills: 
+LinkedIn: 
+Resume: 
+-----------------------------
