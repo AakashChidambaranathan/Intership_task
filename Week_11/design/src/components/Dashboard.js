@@ -1,11 +1,9 @@
-import React from "react";
-import { Pie,Bar, Doughnut, Line } from "react-chartjs-2";
+import { Pie, Doughnut, Line } from "react-chartjs-2";
 import "chart.js/auto";
 import "bootstrap/dist/css/bootstrap.min.css";
 import data from "../Studentdata/dashboardData.json";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Chart as ChartJS } from "chart.js";
-import datalabels from "react-chartjs-2"
 ChartJS.register(ChartDataLabels);
 
 function Dashboard() {

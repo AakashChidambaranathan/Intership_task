@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Bar, Pie, Doughnut, Line } from "react-chartjs-2";
 import "chart.js/auto";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import plugin from "chartjs-plugin-datalabels";
-import Fooder from "./Fooder";
 function Userinput() {
     const [marks, setMarks] = useState({
         Total_Applications: "",
