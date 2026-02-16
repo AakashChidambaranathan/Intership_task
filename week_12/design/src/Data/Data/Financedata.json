@@ -1,0 +1,62 @@
+[
+  {
+    "label": "Phase 1",
+    "income": 45200,
+    "outflow": 29800
+  },
+  {
+    "label": "Phase 2",
+    "income": 57890,
+    "outflow": 34250
+  },
+  {
+    "label": "Phase 3",
+    "income": 69230,
+    "outflow": 41800
+  },
+  {
+    "label": "Phase 4",
+    "income": 81240,
+    "outflow": 50960
+  },
+  {
+    "label": "Phase 5",
+    "income": 73420,
+    "outflow": 36840
+  },
+  {
+    "label": "Phase 6",
+    "income": 95810,
+    "outflow": 57430
+  },
+  {
+    "label": "Phase 7",
+    "income": 86950,
+    "outflow": 42760
+  },
+  {
+    "label": "Phase 8",
+    "income": 74930,
+    "outflow": 39910
+  },
+  {
+    "label": "Phase 9",
+    "income": 67820,
+    "outflow": 42570
+  },
+  {
+    "label": "Phase 10",
+    "income": 84290,
+    "outflow": 45230
+  },
+  {
+    "label": "Phase 11",
+    "income": 59310,
+    "outflow": 37120
+  },
+  {
+    "label": "Phase 12",
+    "income": 91780,
+    "outflow": 48500
+  }
+]

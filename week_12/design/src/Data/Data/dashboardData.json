@@ -1,0 +1,12 @@
+{
+  "applications": [
+    {
+      "id": 1,
+      "company": "Google",
+      "role": "Frontend Developer",
+      "appliedDate": "2024-06-01",
+      "lastUpdate": "2024-06-10",
+      "status": "Interview"
+    }
+  ]
+}

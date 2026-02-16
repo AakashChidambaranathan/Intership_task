@@ -1,0 +1,16 @@
+{
+  "name": "redis-cache-photos",
+  "version": "1.0.0",
+  "description": "Redis caching for JSONPlaceholder photos API",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "redis": "^5.10.0"
+  }
+}
