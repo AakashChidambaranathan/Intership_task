@@ -1,52 +1,52 @@
-// function rev(word){
-//     return word.split("").reverse().join("");
-// }
+function rev(word){
+    return word.split("").reverse().join("");
+}
 
 const { areIntervalsOverlapping } = require("date-fns");
 const { moveItem } = require("framer-motion");
 
-// console.log(rev("Aakash"))
+console.log(rev("Aakash"))
 
-// function pallnerom(word){
-//     let rev=word.split("").reverse().join("");
-//     return rev===word
-// }
+function pallnerom(word){
+    let rev=word.split("").reverse().join("");
+    return rev===word
+}
 
-// console.log(pallnerom("gfg"))
+console.log(pallnerom("gfg"))
 
-// function find_largest(arr){
-//     let largest=arr[0]
-//     for(let i=1;i<arr.length;i++){
-//         if(arr[i]>largest){
-//             largest=arr[i];
-//         }
-//     }
-//     return largest;
-// }
+function find_largest(arr){
+    let largest=arr[0]
+    for(let i=1;i<arr.length;i++){
+        if(arr[i]>largest){
+            largest=arr[i];
+        }
+    }
+    return largest;
+}
 
-// console.log(find_largest([99,44,33,33,11]))
+console.log(find_largest([99,44,33,33,11]))
 
-// function great(name,callback){
-//     callback (`Hello ${name}!`)
-// }
+function great(name,callback){
+    callback (`Hello ${name}!`)
+}
 
-// great('aakash',message=>  console.log(message));
+great('aakash',message=>  console.log(message));
 
-// const obj={name:"Aakash"};
-// obj.age=45;
-// console.log(obj.name)
-// console.log(obj.age)
+const obj={name:"Aakash"};
+obj.age=45;
+console.log(obj.name)
+console.log(obj.age)
 
 
-// function add(arr){
-//     let sum=0;
-//     for(let i=0;i<arr.length;i++){
-//         sum+=arr[i];
-//     }
-//     return sum
-// }
+function add(arr){
+    let sum=0;
+    for(let i=0;i<arr.length;i++){
+        sum+=arr[i];
+    }
+    return sum
+}
 
-// console.log(add([3,2,3,4,5,3,2]))
+console.log(add([3,2,3,4,5,3,2]))
 
 function fifb(num){
     let num1=0,num2=1,nextnum;

@@ -21,7 +21,6 @@ app.post("/save", (req, res) => {
   const application = req.body;
   const applications = readJSONFile();
   applications.push(application);
-
   writeJSONFile(applications);
   const textData = `
 -----------------------------

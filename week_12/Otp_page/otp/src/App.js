@@ -1,4 +1,3 @@
-import "./App.css";
 import PhoneOtpForm from "./components/phone-number";
 
 function App() {

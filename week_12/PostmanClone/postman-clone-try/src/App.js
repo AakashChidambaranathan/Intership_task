@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Fooder from "./components/Fooder";
 function App() {
   const [method, setMethod] = useState("GET");
   const [url, setUrl] = useState("");
@@ -39,6 +40,8 @@ function App() {
           >
             <option>GET</option>
             <option>POST</option>
+            <option>Unemployed</option>
+            <option>Job</option>
             <option>PUT</option>
             <option>DELETE</option>
           </select>
@@ -76,9 +79,19 @@ function App() {
           </pre>
         </div>
       </div>
+      <div className="card">
+        <div className="card-header fw-bold">
+          Response
+        </div>
+        <div className="card-body">
+          {error && <div className="alert alert-danger">{error}</div>}
+          <pre className="bg-dark text-success p-3 rounded">
+            {response || "Response will appear here"}
+          </pre>
+        </div>
+      </div>
+      <Fooder/>
     </div>
   );
 }
-
-
 export default App;

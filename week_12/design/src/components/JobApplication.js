@@ -143,7 +143,7 @@ function JobApplication() {
                           value={formData.highest_education}
                           onChange={handleChange}
                         />
-                      </div>
+                    </div>
                       <div className="col-md-6 mb-3">
                         <label className="form-label">
                           {lb.Graduation_Year}
@@ -158,7 +158,7 @@ function JobApplication() {
                           value={formData.graduation_year}
                           onChange={handleChange}
                         />
-                      </div>
+                    </div>
                     </div>
                     <div className="mb-3">
                       <label className="form-label">{lb.University}</label>

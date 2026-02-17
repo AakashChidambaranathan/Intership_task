@@ -16,7 +16,6 @@ function Header() {
             style={{ height: "7vh", width: "7vw", borderRadius: "6px" }}
           />
         </Link>
-
         <ul className="nav justify-content-center flex-wrap">
           <li className="nav-item mx-2">
             <Link
@@ -29,7 +28,6 @@ function Header() {
               Home
             </Link>
           </li>
-
           <li className="nav-item mx-2">
             <Link
               to="/Application"
@@ -41,7 +39,6 @@ function Header() {
               Application
             </Link>
           </li>
-
           <li className="nav-item mx-2">
             <Link
               to="/Profile"
